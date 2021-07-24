@@ -18,6 +18,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Google.Apis.Auth" Version="1.52.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Google.Apis.Auth" />
+  </ItemGroup>
 </Project>
