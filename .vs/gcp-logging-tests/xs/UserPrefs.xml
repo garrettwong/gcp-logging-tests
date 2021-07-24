@@ -2,19 +2,23 @@
   <MonoDevelop.Ide.ItemProperties.gcp-logging-tests PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="gcp-logging-tests/UnitTest1.cs">
     <Files>
-      <File FileName="gcp-logging-tests/UnitTest1.cs" Line="15" Column="1" />
+      <File FileName="gcp-logging-tests/UnitTest1.cs" Line="21" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="gcp-logging-tests" expanded="True" selected="True">
-            <Node name="gcp-logging-tests" expanded="True" />
+          <Node name="gcp-logging-tests" expanded="True">
+            <Node name="gcp-logging-tests" expanded="True">
+              <Node name="UnitTest1.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node name="gcp-logging-tests" expanded="True" selected="True" />
+          <Node name="gcp-logging-tests" expanded="True">
+            <Node name="gcp-logging-tests" selected="True" />
+          </Node>
         </State>
       </Pad>
     </Pads>
