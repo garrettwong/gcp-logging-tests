@@ -11,8 +11,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.gcp_credentials }}
+    # env:
+    #   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.gcp_credentials }}
     steps:
 
     - name: Set up Cloud SDK
