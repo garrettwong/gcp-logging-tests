@@ -11,10 +11,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    # env:
-    #   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.gcp_credentials }}
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: sa-key.json
     steps:
-
+    - name: Create KEYFILE
+      run: echo "${{ secrets.gcp_credentials }}" >> sa-key.json
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@master
       with:
@@ -35,7 +36,4 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      with:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
-        service_account_key: ${{ secrets.gcp_credentials }}
-        export_default_credentials: true
+      
