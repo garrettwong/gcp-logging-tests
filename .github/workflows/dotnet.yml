@@ -29,7 +29,7 @@ jobs:
 
     - name: cat GAC
       run: cat $GOOGLE_APPLICATION_CREDENTIALS
-      
+
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@master
       with:
@@ -39,6 +39,9 @@ jobs:
     - name: Use gcloud CLI
       run: gcloud info
 
+    - name: gcloud auth
+      run: gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+      
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
