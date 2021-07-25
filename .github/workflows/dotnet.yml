@@ -14,8 +14,15 @@ jobs:
     env:
       GOOGLE_APPLICATION_CREDENTIALS: sa-key.json
     steps:
+    
     - name: Create KEYFILE
       run: echo "${{ secrets.gcp_credentials }}" >> sa-key.json
+    
+    - name: SHOW
+      run: ls
+
+    - name: SHOW
+      run: pwd
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@master
       with:
