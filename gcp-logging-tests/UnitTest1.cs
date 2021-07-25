@@ -57,7 +57,7 @@ namespace gcp_logging_tests
         [Fact]
         public async Task BucketsGet()
         {
-            var functionUrl = "https://storage.googleapis.com/storage/v1/b";
+            var functionUrl = "https://storage.googleapis.com/storage/v1/b?project=gwc-sandbox";
 
             var token = await GetBearerToken(functionUrl);
 
