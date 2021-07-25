@@ -15,6 +15,9 @@ jobs:
       GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/gcp-logging-tests/gcp-logging-tests/sa-key.json
     steps:
     
+    - name: SHOW KEYFILE
+      run: echo "${{ secrets.gcp_credentials }}"
+    
     - name: Create KEYFILE
       run: echo "${{ secrets.gcp_credentials }}" >> sa-key.json
     
