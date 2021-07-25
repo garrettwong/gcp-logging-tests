@@ -37,7 +37,7 @@ namespace gcp_logging_tests
         }
 
         [Fact]
-        public async Task TestApiCall()
+        public async Task FunctionsCall()
         {
             var functionUrl = "https://us-central1-gwc-sandbox.cloudfunctions.net/dotnet-time-function";
 
@@ -52,6 +52,27 @@ namespace gcp_logging_tests
             Assert.NotNull(r);
 
         }
+
+
+        [Fact]
+        public async Task BucketsGet()
+        {
+            var functionUrl = "https://storage.googleapis.com/storage/v1/b";
+
+            var token = await GetBearerToken(functionUrl);
+
+            using var client = new HttpClient();
+            client.Timeout = TimeSpan.FromSeconds(10);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var r = await client.GetStringAsync(functionUrl);
+
+            Console.WriteLine(r);
+            Assert.NotNull(r);
+
+        }
+
+
 
     }
 }

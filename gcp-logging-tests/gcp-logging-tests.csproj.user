@@ -4,7 +4,7 @@
     <StartAction>Project</StartAction>
     <ExternalConsole>true</ExternalConsole>
     <EnvironmentVariables>
-      <Variable name="GOOGLE_APPLICATION_CREDENTIALS" value="~/Downloads/sa-key.json" xmlns="" />
+      <Variable name="GOOGLE_APPLICATION_CREDENTIALS" value="/Users/garrettwong/Downloads/sa-key.json" xmlns="" />
     </EnvironmentVariables>
   </PropertyGroup>
 </Project>
