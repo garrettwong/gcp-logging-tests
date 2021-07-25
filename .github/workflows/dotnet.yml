@@ -24,6 +24,14 @@ jobs:
     - name: SHOW
       run: pwd
 
+
+    - name: echo GAC
+      run: echo $GOOGLE_APPLICATION_CREDENTIALS
+
+    - name: cat GAC
+      run: cat $GOOGLE_APPLICATION_CREDENTIALS
+
+
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@master
       with:
