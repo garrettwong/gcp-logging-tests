@@ -67,5 +67,5 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       env:
-        GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/gcp-logging-tests/gcp-logging-tests/gcp-logging-tests/sa-key.json
+        GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/gcp-logging-tests/gcp-logging-tests/sa-key.json
       
