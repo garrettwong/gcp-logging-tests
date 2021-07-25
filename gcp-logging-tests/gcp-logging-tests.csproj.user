@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <ExternalConsole>true</ExternalConsole>
+    <EnvironmentVariables>
+      <Variable name="GOOGLE_APPLICATION_CREDENTIALS" value="~/Downloads/sa-key.json" xmlns="" />
+    </EnvironmentVariables>
+  </PropertyGroup>
+</Project>
