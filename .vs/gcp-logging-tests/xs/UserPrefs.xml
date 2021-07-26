@@ -2,15 +2,23 @@
   <MonoDevelop.Ide.ItemProperties.gcp-logging-tests PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="gcp-logging-tests/UnitTest1.cs">
     <Files>
-      <File FileName="gcp-logging-tests/UnitTest1.cs" Line="59" Column="10" />
-      <File FileName="gcp-logging-tests/gcp-logging-tests.csproj" Line="28" Column="1" />
+      <File FileName="gcp-logging-tests/UnitTest1.cs" Line="40" Column="39" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="gcp-logging-tests" expanded="True">
-            <Node name="gcp-logging-tests" expanded="True" selected="True" />
+            <Node name="gcp-logging-tests" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="UnitTest1.cs" selected="True" />
+            </Node>
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>r</Value>
+          <Value>gc.GetOidcTokenAsync()</Value>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
@@ -32,7 +40,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/UnitTest1.cs" relfile="gcp-logging-tests/UnitTest1.cs" line="52" column="1" />
+      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/UnitTest1.cs" relfile="gcp-logging-tests/UnitTest1.cs" line="77" column="1" />
+      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/UnitTest1.cs" relfile="gcp-logging-tests/UnitTest1.cs" line="41" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

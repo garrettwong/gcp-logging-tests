@@ -200,3 +200,8 @@
 /Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/bin/Debug/net5.0/Google.Apis.Auth.PlatformServices.dll
 /Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/bin/Debug/net5.0/Google.Apis.Auth.dll
 /Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/bin/Debug/net5.0/Google.Apis.Core.dll
+/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/bin/Debug/net5.0/Google.Api.Gax.dll
+/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/bin/Debug/net5.0/Google.Api.Gax.Rest.dll
+/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/bin/Debug/net5.0/Google.Apis.Storage.v1.dll
+/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/bin/Debug/net5.0/Google.Cloud.Storage.V1.dll
+/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/bin/Debug/net5.0/Microsoft.Bcl.AsyncInterfaces.dll

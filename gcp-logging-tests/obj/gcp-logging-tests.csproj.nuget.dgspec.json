@@ -42,6 +42,10 @@
               "target": "Package",
               "version": "[1.52.0, )"
             },
+            "Google.Cloud.Storage.V1": {
+              "target": "Package",
+              "version": "[3.5.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.9.4, )"

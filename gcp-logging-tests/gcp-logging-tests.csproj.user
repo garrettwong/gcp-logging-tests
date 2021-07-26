@@ -6,5 +6,36 @@
     <EnvironmentVariables>
       <Variable name="GOOGLE_APPLICATION_CREDENTIALS" value="/Users/garrettwong/Downloads/sa-key.json" xmlns="" />
     </EnvironmentVariables>
+    <MonoDebugMode>false</MonoDebugMode>
+    <MonoDebugCasts>false</MonoDebugCasts>
+    <MonoDebugMdbOptimizations>false</MonoDebugMdbOptimizations>
+    <MonoGdbInfo>false</MonoGdbInfo>
+    <MonoProfile></MonoProfile>
+    <MonoVerboseLevel>0</MonoVerboseLevel>
+    <MonoRuntimeVersion></MonoRuntimeVersion>
+    <MonoSecurityMode>Disabled</MonoSecurityMode>
+    <MonoVerifyAll>false</MonoVerifyAll>
+    <MonoTraceExpressions></MonoTraceExpressions>
+    <MonoLogLevel>Default</MonoLogLevel>
+    <MonoLogMask>None</MonoLogMask>
+    <MonoXmlSerializerGeneration></MonoXmlSerializerGeneration>
+    <MonoConfigDir></MonoConfigDir>
+    <MonoConfigFile></MonoConfigFile>
+    <MonoDisableAIO>false</MonoDisableAIO>
+    <MonoDisableManagedCollation>false</MonoDisableManagedCollation>
+    <MonoExternalEncodings></MonoExternalEncodings>
+    <MonoGacPrefix></MonoGacPrefix>
+    <MonoStripDriveLetters>false</MonoStripDriveLetters>
+    <MonoCaseInsensitivePaths>false</MonoCaseInsensitivePaths>
+    <MonoManagedWatcher>false</MonoManagedWatcher>
+    <MonoNoSmp>false</MonoNoSmp>
+    <MonoPath></MonoPath>
+    <MonoWindowsFormsTheme></MonoWindowsFormsTheme>
+    <MonoThreadsPerCpu></MonoThreadsPerCpu>
+    <MonoAspNetNoDelete>false</MonoAspNetNoDelete>
+    <MonoTraceListener></MonoTraceListener>
+    <MonoXExceptions>false</MonoXExceptions>
+    <MonoXDebug>false</MonoXDebug>
+    <MonoGcType>Default</MonoGcType>
   </PropertyGroup>
 </Project>
