@@ -27,5 +27,9 @@
     <None Remove="Google.Apis.Auth" />
     <None Remove="Google.Cloud.Storage.V1" />
     <None Remove="Google.Cloud.Logging.V2" />
+    <None Remove="Flows\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Flows\" />
   </ItemGroup>
 </Project>
