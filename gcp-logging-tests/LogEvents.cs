@@ -111,5 +111,159 @@ namespace gcp_logging_tests
             }
             Assert.NotEmpty(logEntries);
         }
+
+        // logName="projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access"
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task BucketsListLogEvent()
+        {
+            var token = await Access.GetAccessToken();
+
+            // Get Buckets API Call
+            var storageUrl = "https://storage.googleapis.com/storage/v1/b?project=gwc-sandbox";
+
+            using var client = new HttpClient();
+            client.Timeout = TimeSpan.FromSeconds(10);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var r = await client.GetStringAsync(storageUrl);
+
+            Console.WriteLine(r);
+            Assert.NotNull(r);
+
+            var logEntries = ListLogEntries("gwc-sandbox", "cloudaudit.googleapis.com%2Fdata_access");
+            foreach (var row in logEntries)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(row));
+            }
+            Assert.NotEmpty(logEntries);
+
+            /*
+{
+  "protoPayload": {
+    "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+    "status": {},
+    "authenticationInfo": {
+      "principalEmail": "gcp-csharp-app@gwc-core.iam.gserviceaccount.com",
+      "serviceAccountKeyName": "//iam.googleapis.com/projects/gwc-core/serviceAccounts/gcp-csharp-app@gwc-core.iam.gserviceaccount.com/keys/e0a63191fe4c4c3e58e39908732d437c9e77ed39"
+    },
+    "requestMetadata": {
+      "callerIp": "107.139.105.69",
+      "callerSuppliedUserAgent": "gzip(gfe)",
+      "requestAttributes": {
+        "time": "2021-07-27T04:43:45.059367125Z",
+        "auth": {}
+      },
+      "destinationAttributes": {}
+    },
+    "serviceName": "storage.googleapis.com",
+    "methodName": "storage.buckets.list",
+    "authorizationInfo": [
+      {
+        "permission": "storage.buckets.list",
+        "granted": true,
+        "resourceAttributes": {}
+      }
+    ],
+    "resourceLocation": {
+      "currentLocations": [
+        "global"
+      ]
+    }
+  },
+  "insertId": "-1ded1dejcljm",
+  "resource": {
+    "type": "gcs_bucket",
+    "labels": {
+      "project_id": "gwc-sandbox",
+      "location": "global",
+      "bucket_name": ""
+    }
+  },
+  "timestamp": "2021-07-27T04:43:45.052936915Z",
+  "severity": "INFO",
+  "logName": "projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access",
+  "receiveTimestamp": "2021-07-27T04:43:45.907857582Z"
+}
+             */
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task BucketsObjectReadLogEvent()
+        {
+            var token = await Access.GetAccessToken();
+
+            // Get Buckets API Call
+            var storageUrl = "https://storage.googleapis.com/storage/v1/b?project=gwc-sandbox";
+
+            using var client = new HttpClient();
+            client.Timeout = TimeSpan.FromSeconds(10);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var r = await client.GetStringAsync(storageUrl);
+
+            Console.WriteLine(r);
+            Assert.NotNull(r);
+
+            /*
+             {
+  "protoPayload": {
+    "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+    "status": {},
+    "authenticationInfo": {
+      "principalEmail": "garrettwong@gwongcloud.com"
+    },
+    "requestMetadata": {
+      "callerIp": "35.230.51.15",
+      "callerSuppliedUserAgent": "apitools Python/3.7.3 gsutil/4.65 (linux) analytics/disabled interactive/True command/cat google-cloud-sdk/349.0.0",
+      "requestAttributes": {
+        "time": "2021-07-27T04:43:37.997614383Z",
+        "auth": {}
+      },
+      "destinationAttributes": {}
+    },
+    "serviceName": "storage.googleapis.com",
+    "methodName": "storage.objects.get",
+    "authorizationInfo": [
+      {
+        "resource": "projects/_/buckets/gwc-sandbox-dataflow/objects/my.json",
+        "permission": "storage.objects.get",
+        "granted": true,
+        "resourceAttributes": {}
+      }
+    ],
+    "resourceName": "projects/_/buckets/gwc-sandbox-dataflow/objects/my.json",
+    "resourceLocation": {
+      "currentLocations": [
+        "us"
+      ]
+    }
+  },
+  "insertId": "jpsl71dk08y",
+  "resource": {
+    "type": "gcs_bucket",
+    "labels": {
+      "location": "us",
+      "bucket_name": "gwc-sandbox-dataflow",
+      "project_id": "gwc-sandbox"
+    }
+  },
+  "timestamp": "2021-07-27T04:43:37.988793649Z",
+  "severity": "INFO",
+  "logName": "projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access",
+  "receiveTimestamp": "2021-07-27T04:43:38.031478250Z"
+} 
+             */
+        }
     }
 }
