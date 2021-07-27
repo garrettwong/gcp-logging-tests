@@ -14,10 +14,17 @@ using Google.Cloud.Logging.V2;
 using Google.Cloud.Storage.V1;
 using Grpc.Core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace gcp_logging_tests
 {
+
+
+    /// Log Entries List Example
+    /// https://github.com/GoogleCloudPlatform/dotnet-docs-samples/tree/master/logging/api
+    /// /Users/garrettwong/Git/dotnet-docs-samples/logging/api/LoggingSample
+    /// dotnet 5.0.x
     public class LogEvents
     {
         public LogEvents()
@@ -83,7 +90,30 @@ namespace gcp_logging_tests
                 "timestamp desc", callSettings: _retryAWhile);//_retryAWhile);
 
             return results;
-            
+        }
+        /// <summary>
+        /// https://cloud.google.com/logging/docs/reference/v2/rest/v2/logs/list
+        /// </summary>
+        /// <returns></returns>
+        private Google.Api.Gax.PagedEnumerable<ListLogEntriesResponse, LogEntry> ListLogEntriesByLogQuery(string projectId, string logQuery)
+        {
+            CallSettings _retryAWhile = CallSettings.FromRetry(
+            RetrySettings.FromExponentialBackoff(
+                maxAttempts: 15, //15
+                initialBackoff: TimeSpan.FromSeconds(3),
+                maxBackoff: TimeSpan.FromSeconds(12),
+                backoffMultiplier: 2.0,
+                retryFilter: RetrySettings.FilterForStatusCodes(StatusCode.Internal, StatusCode.DeadlineExceeded)));
+
+            var d = DateTime.Now.AddHours(-12);
+            var v = d.ToString("o");
+
+            var client = LoggingServiceV2Client.Create();
+            ProjectName projectName = new ProjectName(projectId);
+            var results = client.ListLogEntries(Enumerable.Repeat(projectName, 1), logQuery,
+                "timestamp desc", callSettings: _retryAWhile);//_retryAWhile);
+
+            return results;
         }
 
         [Fact]
@@ -99,6 +129,8 @@ namespace gcp_logging_tests
         [Fact]
         public void ListLogEntriesTest()
         {
+            WriteLogEntry("gwc-sandbox", "hello", "world");
+
             var logEntries = ListLogEntries("gwc-sandbox", "hello");
 
             var i = 0;
@@ -136,10 +168,24 @@ namespace gcp_logging_tests
             Console.WriteLine(r);
             Assert.NotNull(r);
 
-            var logEntries = ListLogEntries("gwc-sandbox", "cloudaudit.googleapis.com%2Fdata_access");
+            var logEntries = ListLogEntriesByLogQuery("gwc-sandbox",
+                "logName=\"projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
+                "protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"2021-07-25T2:40:00-04:00\"");
             foreach (var row in logEntries)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(row));
+
+                var log = JsonConvert.SerializeObject(row);
+
+                var jsonLog = JsonConvert.DeserializeObject(log);
+
+                var jo = JObject.Parse(log);
+
+                JToken acme = jo.SelectToken("$.protoPayload.authenticationInfo.principalEmail");
+                //var s = acme.ToString();
+
+                Assert.Equal("gcs_bucket", jo.SelectToken("$.Resource.Type").ToString());
+
+                break; // the first log element should be the one that was just logged
             }
             Assert.NotEmpty(logEntries);
 
