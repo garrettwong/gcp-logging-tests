@@ -15,9 +15,9 @@ using Xunit;
 
 namespace gcp_logging_tests
 {
-    public class UnitTest1
+    public class DefaultTests
     {
-        public UnitTest1()
+        public DefaultTests()
         {
             if (Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS") == null)
             {

@@ -25,9 +25,9 @@ namespace gcp_logging_tests
     /// https://github.com/GoogleCloudPlatform/dotnet-docs-samples/tree/master/logging/api
     /// /Users/garrettwong/Git/dotnet-docs-samples/logging/api/LoggingSample
     /// dotnet 5.0.x
-    public class LogEvents
+    public class LogEventsTests
     {
-        public LogEvents()
+        public LogEventsTests()
         {
             if (Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS") == null)
             {
