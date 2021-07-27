@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using Google.Api;
 using Google.Api.Gax.Grpc;
 using Google.Api.Gax.ResourceNames;
-using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Logging.Type;
 using Google.Cloud.Logging.V2;
-using Google.Cloud.Storage.V1;
 using Grpc.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -91,6 +88,7 @@ namespace gcp_logging_tests
 
             return results;
         }
+
         /// <summary>
         /// https://cloud.google.com/logging/docs/reference/v2/rest/v2/logs/list
         /// </summary>
@@ -199,7 +197,7 @@ namespace gcp_logging_tests
       "serviceAccountKeyName": "//iam.googleapis.com/projects/gwc-core/serviceAccounts/gcp-csharp-app@gwc-core.iam.gserviceaccount.com/keys/e0a63191fe4c4c3e58e39908732d437c9e77ed39"
     },
     "requestMetadata": {
-      "callerIp": "107.139.105.69",
+      "callerIp": "222.222.222.222",
       "callerSuppliedUserAgent": "gzip(gfe)",
       "requestAttributes": {
         "time": "2021-07-27T04:43:45.059367125Z",
