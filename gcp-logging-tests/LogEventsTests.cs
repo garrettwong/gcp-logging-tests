@@ -79,7 +79,7 @@ namespace gcp_logging_tests
                 backoffMultiplier: 2.0,
                 retryFilter: RetrySettings.FilterForStatusCodes(StatusCode.Internal, StatusCode.DeadlineExceeded)));
 
-            var d = DateTime.Now.AddHours(-12);
+            var d = DateTime.Now.AddHours(-2);
             var v = d.ToString("o");
 
             var client = LoggingServiceV2Client.Create();
@@ -99,7 +99,7 @@ namespace gcp_logging_tests
         {
             CallSettings _retryAWhile = CallSettings.FromRetry(
             RetrySettings.FromExponentialBackoff(
-                maxAttempts: 15, //15
+                maxAttempts: 5, //15
                 initialBackoff: TimeSpan.FromSeconds(3),
                 maxBackoff: TimeSpan.FromSeconds(12),
                 backoffMultiplier: 2.0,
@@ -170,7 +170,7 @@ namespace gcp_logging_tests
 
             var logEntries = ListLogEntriesByLogQuery("gwc-sandbox",
                 "logName=\"projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
-                "protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"2021-07-25T2:40:00-04:00\"");
+                "protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"2021-07-26T2:40:00-04:00\"");
             foreach (var row in logEntries)
             {
 
