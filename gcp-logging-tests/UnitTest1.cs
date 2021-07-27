@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Api.Gax.Grpc;
+using Google.Api.Gax.ResourceNames;
 using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Logging.V2;
 using Google.Cloud.Storage.V1;
+using Grpc.Core;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -48,7 +53,6 @@ namespace gcp_logging_tests
             Assert.True(1 == 1);
         }
 
-
         [Fact]
         public void ApplicationDefaultCredentails()
         {
@@ -56,8 +60,6 @@ namespace gcp_logging_tests
 
             Assert.NotNull(credentialsPath);
         }
-
-
 
         [Fact]
         public async Task FunctionsCall()
@@ -73,7 +75,6 @@ namespace gcp_logging_tests
             var r = await client.GetStringAsync(functionUrl);
 
             Assert.NotNull(r);
-
         }
 
 
@@ -132,7 +133,10 @@ namespace gcp_logging_tests
 
         }
 
-
+        /// <summary>
+        /// https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/generateAccessToken
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task IAMCredentialsGet()
         {
@@ -165,8 +169,10 @@ namespace gcp_logging_tests
             Assert.NotNull(accessToken);
         }
 
-
-
+        /// <summary>
+        /// https://cloud.google.com/storage/docs/json_api/v1/buckets/list?apix_params=%7B%22project%22%3A%22gwc-sandbox%22%7D
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task ClientLibBucketsList()
         {
@@ -183,6 +189,10 @@ namespace gcp_logging_tests
             }
         }
 
+        /// <summary>
+        /// https://cloud.google.com/storage/docs/json_api/v1/buckets/list?apix_params=%7B%22project%22%3A%22gwc-sandbox%22%7D
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task BucketsList()
         {
@@ -200,5 +210,76 @@ namespace gcp_logging_tests
             Console.WriteLine(r);
             Assert.NotNull(r);
         }
+
+        /// <summary>
+        /// https://cloud.google.com/logging/docs/reference/v2/rest/v2/logs/list
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task LogsList()
+        {
+            var token = await GetAccessToken();
+            var url = "https://logging.googleapis.com/v2/projects/gwc-sandbox/logs";
+            using var client = new HttpClient();
+            client.Timeout = TimeSpan.FromSeconds(10);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var r = await client.GetStringAsync(url);
+
+            Console.WriteLine(r);
+            Assert.NotNull(r);
+        }
+
+        /// <summary>
+        /// https://cloud.google.com/logging/docs/reference/v2/rest/v2/logs/list
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task LogEntriesList()
+        {
+            CallSettings _retryAWhile = CallSettings.FromRetry(
+            RetrySettings.FromExponentialBackoff(
+                maxAttempts: 15, //15
+                initialBackoff: TimeSpan.FromSeconds(3),
+                maxBackoff: TimeSpan.FromSeconds(12),
+                backoffMultiplier: 2.0,
+                retryFilter: RetrySettings.FilterForStatusCodes(StatusCode.Internal, StatusCode.DeadlineExceeded)));
+
+            var d = DateTime.Now.AddHours(-12);
+            var v = d.ToString("o");
+
+            var client = LoggingServiceV2Client.Create();
+            LogName logName = new LogName("gwc-sandbox", "log-idx");
+            ProjectName projectName = new ProjectName("gwc-sandbox");
+            var results = client.ListLogEntries(Enumerable.Repeat(projectName, 1), $"logName={logName.ToString()} AND " +
+                $"timestamp >= \"{v}\"", //"timestamp >= \"2021-07-25T2:40:00-04:00\"",
+                "timestamp desc", callSettings: _retryAWhile);//_retryAWhile);
+
+            var i = 0;
+            foreach (var row in results)
+            {
+                //Console.WriteLine($"{row.TextPayload.Trim()}");
+                Console.WriteLine(i + ":");
+                Console.WriteLine(JsonConvert.SerializeObject(row));
+                i++;
+            }
+            Assert.Equal(11, i);
+
+            //var token = await GetAccessToken();
+            //var url = "https://logging.googleapis.com/v2/projects/gwc-sandbox/logs";
+            //using var client = new HttpClient();
+            //client.Timeout = TimeSpan.FromSeconds(10);
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            //var r = await client.GetStringAsync(url);
+
+            //Console.WriteLine(r);
+            //Assert.NotNull(r);
+        }
+
+        /// Log Entries List Example
+        /// https://github.com/GoogleCloudPlatform/dotnet-docs-samples/tree/master/logging/api
+        /// /Users/garrettwong/Git/dotnet-docs-samples/logging/api/LoggingSample
+        /// dotnet 5.0.x
     }
 }
