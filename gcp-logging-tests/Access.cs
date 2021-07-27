@@ -31,6 +31,14 @@ namespace gcp_logging_tests
 
             return token;
         }
+
+        public static void Initiailize()
+        {
+            if (Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS") == null)
+            {
+                Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", "/Users/garrettwong/Downloads/sa-key.json");
+            }
+        }
     }
 
 }

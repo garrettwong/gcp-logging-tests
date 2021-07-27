@@ -7,10 +7,7 @@ namespace gcp_logging_tests.Flows
     {
         public EmptyClassTests()
         {
-            if (Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS") == null)
-            {
-                Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", "/Users/garrettwong/Downloads/sa-key.json");
-            }
+            Access.Initiailize();
         }
 
 

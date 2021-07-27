@@ -1,16 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Storage.V1;
+using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Google.Api.Gax.Grpc;
-using Google.Api.Gax.ResourceNames;
-using Google.Apis.Auth.OAuth2;
-using Google.Cloud.Logging.V2;
-using Google.Cloud.Storage.V1;
-using Grpc.Core;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace gcp_logging_tests
@@ -19,10 +14,7 @@ namespace gcp_logging_tests
     {
         public DefaultTests()
         {
-            if (Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS") == null)
-            {
-                Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", "/Users/garrettwong/Downloads/sa-key.json");
-            }
+            Access.Initiailize();
         }
 
 
