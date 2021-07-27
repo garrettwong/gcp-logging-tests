@@ -1,40 +1,26 @@
 ﻿<Properties StartupConfiguration="{3ABA3537-EA7E-4A2E-8B77-081CDBCDC096}|Default">
   <MonoDevelop.Ide.ItemProperties.gcp-logging-tests PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="gcp-logging-tests/UnitTest1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="gcp-logging-tests/LogEvents.cs">
     <Files>
-      <File FileName="gcp-logging-tests/UnitTest1.cs" Line="249" Column="31" />
+      <File FileName="gcp-logging-tests/UnitTest1.cs" Line="286" Column="1" />
+      <File FileName="gcp-logging-tests/LogEvents.cs" Line="31" Column="36" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="gcp-logging-tests" expanded="True">
             <Node name="gcp-logging-tests" expanded="True">
-              <Node name="Dependencies" expanded="True" />
-              <Node name="UnitTest1.cs" selected="True" />
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="LogEvents.cs" selected="True" />
             </Node>
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>gc</Value>
-          <Value>await gc.UnderlyingCredential.GetAccessTokenForRequestAsync()</Value>
-          <Value>r</Value>
-          <Value>s</Value>
-          <Value>s.Result</Value>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node name="gcp-logging-tests" expanded="True">
-            <Node name="gcp-logging-tests" expanded="True">
-              <Node name="gcp_logging_tests" expanded="True">
-                <Node name="UnitTest1" expanded="True">
-                  <Node name="LogEntriesList" selected="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
+          <Node name="gcp-logging-tests" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
@@ -42,13 +28,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/UnitTest1.cs" relfile="gcp-logging-tests/UnitTest1.cs" line="72" column="1" />
-      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/UnitTest1.cs" relfile="gcp-logging-tests/UnitTest1.cs" line="43" column="1" />
-      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/UnitTest1.cs" relfile="gcp-logging-tests/UnitTest1.cs" line="113" column="1" />
-      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/UnitTest1.cs" relfile="gcp-logging-tests/UnitTest1.cs" line="230" column="1" />
-      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/UnitTest1.cs" relfile="gcp-logging-tests/UnitTest1.cs" line="253" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
