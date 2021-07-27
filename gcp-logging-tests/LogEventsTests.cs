@@ -51,7 +51,7 @@ namespace gcp_logging_tests
             {
                 LogNameAsLogName = logName,
                 Severity = LogSeverity.Info,
-                TextPayload = $"{typeof(LogEvents).FullName} - {message}"
+                TextPayload = $"{typeof(LogEventsTests).FullName} - {message}"
             };
             MonitoredResource resource = new MonitoredResource { Type = "global" };
             IDictionary<string, string> entryLabels = new Dictionary<string, string>
