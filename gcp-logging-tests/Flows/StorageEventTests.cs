@@ -33,7 +33,8 @@ namespace gcp_logging_tests.Flows
             // Read Log
             var logEntries = LoggingAPI.ListLogEntriesByLogQuery("gwc-sandbox",
                 "logName=\"projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
-                "protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"2021-07-27T2:40:00-04:00\"");
+                "protoPayload.serviceName=\"storage.googleapis.com\" AND protoPayload.serviceName=\"storage.objects.create\" AND " +
+                " timestamp >= \"2021-07-27T2:40:00-04:00\"");
 
             foreach (var row in logEntries)
             {
