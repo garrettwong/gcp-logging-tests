@@ -29,7 +29,10 @@
     <None Remove="Google.Cloud.Logging.V2" />
     <None Remove="Flows\" />
   </ItemGroup>
+
   <ItemGroup>
-    <Folder Include="Flows\" />
+    <None Update="TEMP.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using gcp_logging_tests.API;
 using Google.Api;
 using Google.Api.Gax.Grpc;
 using Google.Api.Gax.ResourceNames;
@@ -16,8 +17,6 @@ using Xunit;
 
 namespace gcp_logging_tests
 {
-
-
     /// Log Entries List Example
     /// https://github.com/GoogleCloudPlatform/dotnet-docs-samples/tree/master/logging/api
     /// /Users/garrettwong/Git/dotnet-docs-samples/logging/api/LoggingSample
@@ -29,92 +28,10 @@ namespace gcp_logging_tests
             Access.Initiailize();
         }
 
-        private readonly CallSettings _retryAWhile = CallSettings.FromRetry(
-            RetrySettings.FromExponentialBackoff(
-                maxAttempts: 15,
-                initialBackoff: TimeSpan.FromSeconds(3),
-                maxBackoff: TimeSpan.FromSeconds(12),
-                backoffMultiplier: 2.0,
-                retryFilter: RetrySettings.FilterForStatusCodes(StatusCode.Internal, StatusCode.DeadlineExceeded)));
-
-        private void WriteLogEntry(string projectId, string logId, string message)
-        {
-            var client = LoggingServiceV2Client.Create();
-            LogName logName = new LogName(projectId, logId);
-            LogEntry logEntry = new LogEntry
-            {
-                LogNameAsLogName = logName,
-                Severity = LogSeverity.Info,
-                TextPayload = $"{typeof(LogEventsTests).FullName} - {message}"
-            };
-            MonitoredResource resource = new MonitoredResource { Type = "global" };
-            IDictionary<string, string> entryLabels = new Dictionary<string, string>
-            {
-                { "size", "large" },
-                { "color", "red" }
-            };
-            client.WriteLogEntries(logName, resource, entryLabels,
-                new[] { logEntry }, _retryAWhile);
-
-            Console.WriteLine($"Created log entry in log-id: {logId}.");
-        }
-
-        /// <summary>
-        /// https://cloud.google.com/logging/docs/reference/v2/rest/v2/logs/list
-        /// </summary>
-        /// <returns></returns>
-        private Google.Api.Gax.PagedEnumerable<ListLogEntriesResponse, LogEntry> ListLogEntries(string projectId, string logId)
-        {
-            CallSettings _retryAWhile = CallSettings.FromRetry(
-            RetrySettings.FromExponentialBackoff(
-                maxAttempts: 15, //15
-                initialBackoff: TimeSpan.FromSeconds(3),
-                maxBackoff: TimeSpan.FromSeconds(12),
-                backoffMultiplier: 2.0,
-                retryFilter: RetrySettings.FilterForStatusCodes(StatusCode.Internal, StatusCode.DeadlineExceeded)));
-
-            var d = DateTime.Now.AddHours(-2);
-            var v = d.ToString("o");
-
-            var client = LoggingServiceV2Client.Create();
-            LogName logName = new LogName(projectId, logId);
-            ProjectName projectName = new ProjectName(projectId);
-            var results = client.ListLogEntries(Enumerable.Repeat(projectName, 1), $"logName={logName.ToString()} AND " +
-                $"timestamp >= \"{v}\"", //"timestamp >= \"2021-07-25T2:40:00-04:00\"",
-                "timestamp desc", callSettings: _retryAWhile);//_retryAWhile);
-
-            return results;
-        }
-
-        /// <summary>
-        /// https://cloud.google.com/logging/docs/reference/v2/rest/v2/logs/list
-        /// </summary>
-        /// <returns></returns>
-        private Google.Api.Gax.PagedEnumerable<ListLogEntriesResponse, LogEntry> ListLogEntriesByLogQuery(string projectId, string logQuery)
-        {
-            CallSettings _retryAWhile = CallSettings.FromRetry(
-            RetrySettings.FromExponentialBackoff(
-                maxAttempts: 5, //15
-                initialBackoff: TimeSpan.FromSeconds(3),
-                maxBackoff: TimeSpan.FromSeconds(12),
-                backoffMultiplier: 2.0,
-                retryFilter: RetrySettings.FilterForStatusCodes(StatusCode.Internal, StatusCode.DeadlineExceeded)));
-
-            var d = DateTime.Now.AddHours(-12);
-            var v = d.ToString("o");
-
-            var client = LoggingServiceV2Client.Create();
-            ProjectName projectName = new ProjectName(projectId);
-            var results = client.ListLogEntries(Enumerable.Repeat(projectName, 1), logQuery,
-                "timestamp desc", callSettings: _retryAWhile);//_retryAWhile);
-
-            return results;
-        }
-
         [Fact]
         public void WriteLogTest()
         {
-            WriteLogEntry("gwc-sandbox", "hello", "world");
+            LoggingAPI.WriteLogEntry("gwc-sandbox", "hello", "world");
         }
 
         /// <summary>
@@ -124,9 +41,9 @@ namespace gcp_logging_tests
         [Fact]
         public void ListLogEntriesTest()
         {
-            WriteLogEntry("gwc-sandbox", "hello", "world");
+            LoggingAPI.WriteLogEntry("gwc-sandbox", "hello", "world");
 
-            var logEntries = ListLogEntries("gwc-sandbox", "hello");
+            var logEntries = LoggingAPI.ListLogEntries("gwc-sandbox", "hello");
 
             var i = 0;
             foreach (var row in logEntries)
@@ -163,7 +80,7 @@ namespace gcp_logging_tests
             Console.WriteLine(r);
             Assert.NotNull(r);
 
-            var logEntries = ListLogEntriesByLogQuery("gwc-sandbox",
+            var logEntries = LoggingAPI.ListLogEntriesByLogQuery("gwc-sandbox",
                 "logName=\"projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
                 "protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"2021-07-26T2:40:00-04:00\"");
             foreach (var row in logEntries)

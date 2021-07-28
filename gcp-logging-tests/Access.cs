@@ -1,26 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
+﻿using Google.Apis.Auth.OAuth2;
+using System;
+using System.IO;
 using System.Threading.Tasks;
-using Google.Api;
-using Google.Api.Gax.Grpc;
-using Google.Api.Gax.ResourceNames;
-using Google.Apis.Auth.OAuth2;
-using Google.Cloud.Logging.Type;
-using Google.Cloud.Logging.V2;
-using Google.Cloud.Storage.V1;
-using Grpc.Core;
-using Newtonsoft.Json;
-using Xunit;
 
 namespace gcp_logging_tests
 {
     public class Access
     {
-
         public static async Task<string> GetAccessToken()
         {
             var adc = await GoogleCredential
@@ -36,7 +22,15 @@ namespace gcp_logging_tests
         {
             if (Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS") == null)
             {
-                Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", "/Users/garrettwong/Downloads/sa-key.json");
+                if (File.Exists("/Users/garrettwong/Downloads/sa-key.json"))
+                {
+                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", "/Users/garrettwong/Downloads/sa-key.json");
+                }
+                else
+                {
+                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @"C:\Users\garre\Downloads\sa-key.json");
+                }
+                
             }
         }
     }
