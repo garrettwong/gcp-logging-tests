@@ -1,4 +1,5 @@
 ﻿using gcp_logging_tests.API;
+using Google.Cloud.Audit;
 using Google.Protobuf;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -36,20 +37,20 @@ namespace gcp_logging_tests.Flows
 
             foreach (var row in logEntries)
             {
-                var log = JsonConvert.SerializeObject(row);
 
-                //var protoPayload = ByteString.CopyFrom(row.ProtoPayload, Encoding.Unicode);
-                var jsonLog = JsonConvert.DeserializeObject(log);
-                
-                var jo = JObject.Parse(log);
+                var cal = row.ProtoPayload.Unpack<AuditLog>();
 
-                JToken acme = jo.SelectToken("$.protoPayload.authenticationInfo.principalEmail");
-                //var s = acme.ToString();
-
-                Assert.Equal("gcs_bucket", jo.SelectToken("$.Resource.Type").ToString());
+                Assert.Equal("storage.objects.create", cal.MethodName);
+                Assert.Equal("storage.googleapis.com", cal.ServiceName);
+                Assert.Equal("gcp-csharp-app@gwc-core.iam.gserviceaccount.com", cal.AuthenticationInfo.PrincipalEmail);
+                Assert.NotNull(cal.RequestMetadata.CallerIp);
+                Assert.Equal("projects/_/buckets/gwc-sandbox/objects/superobject", cal.ResourceName);
+                Assert.NotNull(cal.RequestMetadata.RequestAttributes.Time.ToString().Replace("\"", ""));
 
                 break; // the first log element should be the one that was just logged
             }
+
+            LoggingAPI.Test("hello");
         }
     }
 }

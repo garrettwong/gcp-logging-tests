@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using gcp_logging_tests.API;
 using Google.Api;
@@ -41,7 +42,11 @@ namespace gcp_logging_tests
         [Fact]
         public void ListLogEntriesTest()
         {
+            // Write twice just in case
             LoggingAPI.WriteLogEntry("gwc-sandbox", "hello", "world");
+            Thread.Sleep(5000);
+            LoggingAPI.WriteLogEntry("gwc-sandbox", "hello", "world2");
+            Thread.Sleep(5000);
 
             var logEntries = LoggingAPI.ListLogEntries("gwc-sandbox", "hello");
 

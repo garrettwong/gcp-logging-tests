@@ -112,5 +112,22 @@ namespace gcp_logging_tests.API
 
             return results;
         }
+
+        public static void Test(string logId)
+        {
+            var client = LoggingServiceV2Client.Create();
+            LogName logName = new LogName("gwc-sandbox", logId);
+            ProjectName projectName = new ProjectName("gwc-sandbox");
+            var results = client.ListLogEntries(Enumerable.Repeat(projectName, 1), $"timestamp >= \"2021-07-27T2:40:00-04:00\" AND logName={logName.ToString()}",
+                "timestamp desc", callSettings: _retryAWhile);
+
+            var sb = new StringBuilder();
+            foreach (var row in results)
+            {
+                sb.Append(row.TextPayload.Trim());
+                Console.WriteLine($"{row.TextPayload.Trim()}");
+            }
+            var res = sb.ToString();
+        }
     }
 }

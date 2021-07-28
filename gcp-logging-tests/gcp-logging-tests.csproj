@@ -21,6 +21,7 @@
     <PackageReference Include="Google.Apis.Auth" Version="1.52.0" />
     <PackageReference Include="Google.Cloud.Storage.V1" Version="3.5.0" />
     <PackageReference Include="Google.Cloud.Logging.V2" Version="3.3.0" />
+    <PackageReference Include="Google.Cloud.Audit" Version="1.0.0-beta02" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,7 @@
     <None Remove="Google.Cloud.Storage.V1" />
     <None Remove="Google.Cloud.Logging.V2" />
     <None Remove="Flows\" />
+    <None Remove="Google.Cloud.Audit" />
   </ItemGroup>
 
   <ItemGroup>
