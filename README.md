@@ -47,4 +47,4 @@ dotnet test
 
 ## Contributing
 
-See [CONTRIBUTING.md] for details around contributing.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for details around contributing.

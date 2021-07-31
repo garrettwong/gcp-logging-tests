@@ -14,7 +14,8 @@ git add .
 git commit -m "Your Commit Message"
 git push -u origin main
 ```
-6. Submit a PR request back to the origin repository.
+6. Ensure that the Github Actions builds complete successfully.
+7. Submit a PR request back to the origin repository.
 
 ## Reporting a Vulnerability
 
