@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using Xunit;
 
-namespace gcp_logging_tests.DataAccessTests
+namespace gcp_logging_tests.DataAccessLogTests
 {
     public class DataRead_Tests
     {
