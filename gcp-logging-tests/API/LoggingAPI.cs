@@ -57,7 +57,7 @@ namespace gcp_logging_tests.API
             client.WriteLogEntries(logName, resource, entryLabels,
                 new[] { logEntry }, _retryAWhile);
 
-            Console.WriteLine($"Created log entry in log-id: {logId}.");
+            // Console.WriteLine($"Created log entry in log-id: {logId}.");
         }
 
 
