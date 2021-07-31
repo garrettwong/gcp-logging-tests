@@ -113,7 +113,7 @@ namespace gcp_logging_tests.Flows
                 _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
             ).Count();
 
-            Assert.Equal(logEntriesCount+1, logEntriesCountNew);
+            Assert.True(logEntriesCount < logEntriesCountNew);
         }
     }
 }
