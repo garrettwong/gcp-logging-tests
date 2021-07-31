@@ -71,7 +71,6 @@ namespace gcp_logging_tests
 
             var r = await client.GetStringAsync(storageUrl);
 
-            Console.WriteLine(r);
             Assert.NotNull(r);
 
             var logEntries = LoggingAPI.ListLogEntriesByLogQuery("gwc-sandbox",
@@ -115,7 +114,6 @@ namespace gcp_logging_tests
 
             var r = await client.GetStringAsync(storageUrl);
 
-            Console.WriteLine(r);
             Assert.NotNull(r);
         }
     }
