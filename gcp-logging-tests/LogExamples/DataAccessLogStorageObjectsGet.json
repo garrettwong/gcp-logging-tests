@@ -1,0 +1,47 @@
+{
+  "protoPayload": {
+    "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+    "status": {},
+    "authenticationInfo": {
+      "principalEmail": "garrettwong@gwongcloud.com"
+    },
+    "requestMetadata": {
+      "callerIp": "35.230.51.15",
+      "callerSuppliedUserAgent": "apitools Python/3.7.3 gsutil/4.65 (linux) analytics/disabled interactive/True command/cat google-cloud-sdk/349.0.0",
+      "requestAttributes": {
+        "time": "2021-07-27T04:43:37.997614383Z",
+        "auth": {}
+      },
+      "destinationAttributes": {}
+    },
+    "serviceName": "storage.googleapis.com",
+    "methodName": "storage.objects.get",
+    "authorizationInfo": [
+      {
+        "resource": "projects/_/buckets/gwc-sandbox-dataflow/objects/my.json",
+        "permission": "storage.objects.get",
+        "granted": true,
+        "resourceAttributes": {}
+      }
+    ],
+    "resourceName": "projects/_/buckets/gwc-sandbox-dataflow/objects/my.json",
+    "resourceLocation": {
+      "currentLocations": [
+        "us"
+      ]
+    }
+  },
+  "insertId": "jpsl71dk08y",
+  "resource": {
+    "type": "gcs_bucket",
+    "labels": {
+      "location": "us",
+      "bucket_name": "gwc-sandbox-dataflow",
+      "project_id": "gwc-sandbox"
+    }
+  },
+  "timestamp": "2021-07-27T04:43:37.988793649Z",
+  "severity": "INFO",
+  "logName": "projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access",
+  "receiveTimestamp": "2021-07-27T04:43:38.031478250Z"
+}

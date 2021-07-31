@@ -26,7 +26,28 @@ namespace gcp_logging_tests.API
         }
 
 
-        public object DataWrite(string projectId, string bucketName, string objectName, string localFilePath)
+        public object ReadObject(string projectId, string bucketName, string objectName)
+        {
+            try
+            {
+                bucketName = bucketName.Replace("gs://", "");
+
+                var options = new GCS.V1.GetObjectOptions();
+                
+                var res = _storageClient.GetObject(bucketName, objectName, options);
+
+                return res;
+            }
+            catch (Google.GoogleApiException e)
+          when (e.Error.Code == 409)
+            {
+                Console.WriteLine(e.Error.Message);
+            }
+
+            return null;
+        }
+
+        public object CreateObject(string projectId, string bucketName, string objectName, string localFilePath)
         {
             try
             {

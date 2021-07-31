@@ -1,0 +1,46 @@
+{
+  "protoPayload": {
+    "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+    "status": {},
+    "authenticationInfo": {
+      "principalEmail": "gcp-csharp-app@gwc-core.iam.gserviceaccount.com",
+      "serviceAccountKeyName": "//iam.googleapis.com/projects/gwc-core/serviceAccounts/gcp-csharp-app@gwc-core.iam.gserviceaccount.com/keys/e0a63191fe4c4c3e58e39908732d437c9e77ed39"
+    },
+    "requestMetadata": {
+      "callerIp": "222.222.222.222",
+      "callerSuppliedUserAgent": "gzip(gfe)",
+      "requestAttributes": {
+        "time": "2021-07-27T04:43:45.059367125Z",
+        "auth": {}
+      },
+      "destinationAttributes": {}
+    },
+    "serviceName": "storage.googleapis.com",
+    "methodName": "storage.buckets.list",
+    "authorizationInfo": [
+      {
+        "permission": "storage.buckets.list",
+        "granted": true,
+        "resourceAttributes": {}
+      }
+    ],
+    "resourceLocation": {
+      "currentLocations": [
+        "global"
+      ]
+    }
+  },
+  "insertId": "-1ded1dejcljm",
+  "resource": {
+    "type": "gcs_bucket",
+    "labels": {
+      "project_id": "gwc-sandbox",
+      "location": "global",
+      "bucket_name": ""
+    }
+  },
+  "timestamp": "2021-07-27T04:43:45.052936915Z",
+  "severity": "INFO",
+  "logName": "projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access",
+  "receiveTimestamp": "2021-07-27T04:43:45.907857582Z"
+}

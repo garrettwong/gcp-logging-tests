@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using gcp_logging_tests.API;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using gcp_logging_tests.API;
-using Google.Api;
-using Google.Api.Gax.Grpc;
-using Google.Api.Gax.ResourceNames;
-using Google.Cloud.Logging.Type;
-using Google.Cloud.Logging.V2;
-using Grpc.Core;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace gcp_logging_tests
@@ -105,55 +97,6 @@ namespace gcp_logging_tests
                 break; // the first log element should be the one that was just logged
             }
             Assert.NotEmpty(logEntries);
-
-            /*
-{
-  "protoPayload": {
-    "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
-    "status": {},
-    "authenticationInfo": {
-      "principalEmail": "gcp-csharp-app@gwc-core.iam.gserviceaccount.com",
-      "serviceAccountKeyName": "//iam.googleapis.com/projects/gwc-core/serviceAccounts/gcp-csharp-app@gwc-core.iam.gserviceaccount.com/keys/e0a63191fe4c4c3e58e39908732d437c9e77ed39"
-    },
-    "requestMetadata": {
-      "callerIp": "222.222.222.222",
-      "callerSuppliedUserAgent": "gzip(gfe)",
-      "requestAttributes": {
-        "time": "2021-07-27T04:43:45.059367125Z",
-        "auth": {}
-      },
-      "destinationAttributes": {}
-    },
-    "serviceName": "storage.googleapis.com",
-    "methodName": "storage.buckets.list",
-    "authorizationInfo": [
-      {
-        "permission": "storage.buckets.list",
-        "granted": true,
-        "resourceAttributes": {}
-      }
-    ],
-    "resourceLocation": {
-      "currentLocations": [
-        "global"
-      ]
-    }
-  },
-  "insertId": "-1ded1dejcljm",
-  "resource": {
-    "type": "gcs_bucket",
-    "labels": {
-      "project_id": "gwc-sandbox",
-      "location": "global",
-      "bucket_name": ""
-    }
-  },
-  "timestamp": "2021-07-27T04:43:45.052936915Z",
-  "severity": "INFO",
-  "logName": "projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access",
-  "receiveTimestamp": "2021-07-27T04:43:45.907857582Z"
-}
-             */
         }
 
 
@@ -177,56 +120,6 @@ namespace gcp_logging_tests
 
             Console.WriteLine(r);
             Assert.NotNull(r);
-
-            /*
-             {
-  "protoPayload": {
-    "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
-    "status": {},
-    "authenticationInfo": {
-      "principalEmail": "garrettwong@gwongcloud.com"
-    },
-    "requestMetadata": {
-      "callerIp": "35.230.51.15",
-      "callerSuppliedUserAgent": "apitools Python/3.7.3 gsutil/4.65 (linux) analytics/disabled interactive/True command/cat google-cloud-sdk/349.0.0",
-      "requestAttributes": {
-        "time": "2021-07-27T04:43:37.997614383Z",
-        "auth": {}
-      },
-      "destinationAttributes": {}
-    },
-    "serviceName": "storage.googleapis.com",
-    "methodName": "storage.objects.get",
-    "authorizationInfo": [
-      {
-        "resource": "projects/_/buckets/gwc-sandbox-dataflow/objects/my.json",
-        "permission": "storage.objects.get",
-        "granted": true,
-        "resourceAttributes": {}
-      }
-    ],
-    "resourceName": "projects/_/buckets/gwc-sandbox-dataflow/objects/my.json",
-    "resourceLocation": {
-      "currentLocations": [
-        "us"
-      ]
-    }
-  },
-  "insertId": "jpsl71dk08y",
-  "resource": {
-    "type": "gcs_bucket",
-    "labels": {
-      "location": "us",
-      "bucket_name": "gwc-sandbox-dataflow",
-      "project_id": "gwc-sandbox"
-    }
-  },
-  "timestamp": "2021-07-27T04:43:37.988793649Z",
-  "severity": "INFO",
-  "logName": "projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access",
-  "receiveTimestamp": "2021-07-27T04:43:38.031478250Z"
-} 
-             */
         }
     }
 }
