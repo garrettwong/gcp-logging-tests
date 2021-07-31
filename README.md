@@ -4,7 +4,12 @@ GCP Logging Tests is a security focused solution.  It focuses specifically the e
 
 ## Getting Started
 
-Preparing your Github Action Build
+### Local
+
+1. Download a Service Account Key JSON file from GCP (assume its called `sa-key.json`).
+2. Set an env var, `export GOOGLE_APPLICATION_CREDENTIALS=sa-key.json`
+
+### Github Actions
 
 1. Create a sa-key.json file that is used locally
 2. On Mac OSX, run `base64 sa-key.json`
@@ -13,8 +18,13 @@ Preparing your Github Action Build
 5. Commit to Github using
 ```bash
 git add . 
-git commit -m "test this commit"
+git commit -m "My Commit Message"
 git push -u origin main
+
+# OR...
+GITUSER=""
+GITTOKEN=""
+git push -u   "https://$GITUSER":"$GITTOKEN@github.com/$GITUSER/gcp-logging-tests.git"
 ```
 
 ## Running this Solution
@@ -23,4 +33,3 @@ git push -u origin main
 dotnet build
 dotnet test
 ```
-

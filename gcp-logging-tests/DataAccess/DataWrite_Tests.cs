@@ -1,6 +1,7 @@
 ﻿using gcp_logging_tests.API;
 using gcp_logging_tests.Utilities;
 using Google.Cloud.Audit;
+using System;
 using System.Linq;
 using System.Threading;
 using Xunit;
@@ -99,7 +100,7 @@ namespace gcp_logging_tests.Flows
             var methodName = "storage.objects.create";
 
             // Read Log
-            var logEntriesCount = LoggingAPI.ListLogEntriesByLogQuery(projectId,
+            var logEntriesBeforeCount = LoggingAPI.ListLogEntriesByLogQuery(projectId,
                 _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
             ).Count();
 
@@ -107,13 +108,25 @@ namespace gcp_logging_tests.Flows
             var storage = new Storage();
             storage.CreateObject(projectId, bucketName, objectName, localFilePath);
 
-            Thread.Sleep(8000);
+            var remainingAttempts = 3;
+            var logEntriesAfterCount = 0;
+            while (remainingAttempts > 0)
+            {
+                Thread.Sleep(5000);
 
-            var logEntriesCountNew = LoggingAPI.ListLogEntriesByLogQuery(projectId,
-                _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
-            ).Count();
+                // Read Log
+                logEntriesAfterCount = LoggingAPI.ListLogEntriesByLogQuery(projectId,
+                    _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
+                ).Count();
 
-            Assert.True(logEntriesCount < logEntriesCountNew);
+                if (logEntriesBeforeCount < logEntriesAfterCount) break;
+
+                remainingAttempts--;
+            }
+
+            Console.WriteLine(logEntriesBeforeCount.ToString() + " " + logEntriesAfterCount.ToString());
+            
+            Assert.True(logEntriesBeforeCount < logEntriesAfterCount);
         }
     }
 }
