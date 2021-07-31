@@ -34,30 +34,6 @@ namespace gcp_logging_tests.DataAccessLogTests
         }
 
         [Fact]
-        public void DataRead_ShouldCreateLog()
-        {
-            var projectId = "gwc-sandbox";
-            var bucketName = projectId;
-            var objectName = "superobject";
-
-            // Write Data
-            var storage = new Storage();
-            var res = storage.ReadObject(projectId, bucketName, objectName);
-
-            // Check Log
-
-            var serviceName = "storage.googleapis.com";
-            var methodName = "storage.objects.get";
-
-            // Read Log
-            var logEntriesCount = LoggingAPI.ListLogEntriesByLogQuery(projectId,
-                _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
-            ).Count();
-
-            Assert.True(logEntriesCount > 0);
-        }
-
-        [Fact]
         public void DataRead_ShouldCreateOneNewLog()
         {
             var projectId = "gwc-sandbox";
