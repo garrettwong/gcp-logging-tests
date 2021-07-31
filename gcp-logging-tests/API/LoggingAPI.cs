@@ -125,7 +125,7 @@ namespace gcp_logging_tests.API
             foreach (var row in results)
             {
                 sb.Append(row.TextPayload.Trim());
-                Console.WriteLine($"{row.TextPayload.Trim()}");
+                //Console.WriteLine($"{row.TextPayload.Trim()}");
             }
             var res = sb.ToString();
         }

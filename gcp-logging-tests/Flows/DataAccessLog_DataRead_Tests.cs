@@ -1,6 +1,7 @@
 ﻿using gcp_logging_tests.API;
 using gcp_logging_tests.Utilities;
 using Google.Cloud.Audit;
+using System;
 using System.Linq;
 using System.Threading;
 using Xunit;
@@ -86,6 +87,7 @@ namespace gcp_logging_tests.Flows
                 _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
             ).Count();
 
+            Console.WriteLine(logEntriesBeforeCount, logEntriesAfterCount);
             Assert.True(logEntriesBeforeCount < logEntriesAfterCount);
         }
 
