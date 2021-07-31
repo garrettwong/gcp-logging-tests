@@ -35,8 +35,6 @@ namespace gcp_logging_tests.Flows
             Assert.NotNull(res);
         }
 
-
-
         [Fact]
         public void DataAccessLog_DataRead_CreatesLog_Test()
         {
@@ -59,6 +57,37 @@ namespace gcp_logging_tests.Flows
             ).Count();
 
             Assert.True(logEntriesCount > 0);
+        }
+
+        [Fact]
+        public void DataAccessLog_DataRead_ShouldCreateOneNewLog_Test()
+        {
+            var projectId = "gwc-sandbox";
+            var bucketName = projectId;
+            var objectName = "superobject";
+
+            // Check Log
+            var serviceName = "storage.googleapis.com";
+            var methodName = "storage.objects.get";
+
+            // Read Log
+            var logEntriesBeforeCount = LoggingAPI.ListLogEntriesByLogQuery(projectId,
+                _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
+            ).Count();
+
+
+            // Write Data
+            var storage = new Storage();
+            var res = storage.ReadObject(projectId, bucketName, objectName);
+
+            Thread.Sleep(6000);
+
+            // Read Log
+            var logEntriesAfterCount = LoggingAPI.ListLogEntriesByLogQuery(projectId,
+                _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
+            ).Count();
+
+            Assert.Equal(logEntriesBeforeCount  + 1, logEntriesAfterCount);
         }
 
     }

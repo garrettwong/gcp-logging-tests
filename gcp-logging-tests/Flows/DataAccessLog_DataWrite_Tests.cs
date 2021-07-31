@@ -88,7 +88,7 @@ namespace gcp_logging_tests.Flows
         }
 
         [Fact]
-        public void DataWriteShouldIncrementCountBy1Test()
+        public void DataWrite_ShouldIncrementCountBy1_Test()
         {
             var projectId = "gwc-sandbox";
             var bucketName = projectId;
