@@ -44,3 +44,7 @@ git push -u   "https://$GITUSER":"$GITTOKEN@github.com/$GITUSER/gcp-logging-test
 dotnet build
 dotnet test
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md] for details around contributing.
