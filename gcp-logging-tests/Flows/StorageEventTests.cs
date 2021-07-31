@@ -4,6 +4,7 @@ using Google.Protobuf;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -52,6 +53,45 @@ namespace gcp_logging_tests.Flows
             }
 
             LoggingAPI.Test("hello");
+        }
+
+        static Random random = new Random();
+        public static string GetRandomHexNumber(int digits)
+        {
+            byte[] buffer = new byte[digits / 2];
+            random.NextBytes(buffer);
+            string result = String.Concat(buffer.Select(x => x.ToString("X2")).ToArray());
+            if (digits % 2 == 0)
+                return result;
+            return result + random.Next(16).ToString("X");
+        }
+
+        [Fact]
+        public void DataWriteCountTest()
+        {
+            var projectId = "gwc-sandbox";
+            var bucketName = projectId;
+            var objectName = "superobject" + GetRandomHexNumber(8);
+            var localFilePath = "TEMP.txt";
+
+            // Write Data
+            var storage = new Storage();
+            storage.DataWrite(projectId, bucketName, objectName, localFilePath);
+
+
+            // Read Log
+            var logEntries = LoggingAPI.ListLogEntriesByLogQuery("gwc-sandbox",
+                "logName=\"projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
+                "protoPayload.serviceName=\"storage.googleapis.com\" AND protoPayload.methodName=\"storage.objects.create\" AND " +
+                " timestamp >= \"2021-07-27T2:40:00-04:00\"");
+
+            var count = 0;
+            foreach (var row in logEntries)
+            {
+                count++;
+            }
+
+            Assert.True(count > 30);
         }
     }
 }
