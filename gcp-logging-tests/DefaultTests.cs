@@ -17,7 +17,6 @@ namespace gcp_logging_tests
             Access.Initiailize();
         }
 
-
         public async Task<string> GetBearerToken(string aud)
         {
             // get bearer token
@@ -93,17 +92,11 @@ namespace gcp_logging_tests
             var o = JsonConvert.DeserializeObject<dynamic>(s.Result);
             var accessToken = o.accessToken.ToString();
 
-
             // API Client Lib Call
             var gc = GoogleCredential.GetApplicationDefault();
             var sc = StorageClient.Create(gc);
             var projectId = "gwc-sandbox";
             var buckets = sc.ListBuckets(projectId);
-            foreach (var bucket in buckets)
-            {
-                Console.WriteLine(bucket.Name);
-            }
-
 
             // Get Buckets API Call
             var storageUrl = "https://storage.googleapis.com/storage/v1/b?project=gwc-sandbox";
@@ -114,9 +107,7 @@ namespace gcp_logging_tests
 
             var r2 = await client2.GetStringAsync(storageUrl);
 
-            Console.WriteLine(r);
             Assert.NotNull(r);
-
         }
 
         /// <summary>
@@ -169,10 +160,10 @@ namespace gcp_logging_tests
             var sc = StorageClient.Create(gc);
             var projectId = "gwc-sandbox";
             var buckets = sc.ListBuckets(projectId);
-            foreach (var bucket in buckets)
-            {
-                Console.WriteLine(bucket.Name);
-            }
+            // foreach (var bucket in buckets)
+            // {
+            //     Console.WriteLine(bucket.Name);
+            // }
         }
 
         /// <summary>
@@ -193,7 +184,6 @@ namespace gcp_logging_tests
 
             var r = await client.GetStringAsync(storageUrl);
 
-            Console.WriteLine(r);
             Assert.NotNull(r);
         }
 
@@ -212,7 +202,6 @@ namespace gcp_logging_tests
 
             var r = await client.GetStringAsync(url);
 
-            Console.WriteLine(r);
             Assert.NotNull(r);
         }
     }

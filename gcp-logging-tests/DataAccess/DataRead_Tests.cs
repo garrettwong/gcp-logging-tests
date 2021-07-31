@@ -77,14 +77,24 @@ namespace gcp_logging_tests.Flows
             var storage = new Storage();
             var res = storage.ReadObject(projectId, bucketName, objectName);
 
-            Thread.Sleep(8000);
+            var remainingAttempts = 3;
+            var logEntriesAfterCount = 0;
+            while (remainingAttempts > 0)
+            {
+                Thread.Sleep(5000);
 
-            // Read Log
-            var logEntriesAfterCount = LoggingAPI.ListLogEntriesByLogQuery(projectId,
-                _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
-            ).Count();
+                // Read Log
+                logEntriesAfterCount = LoggingAPI.ListLogEntriesByLogQuery(projectId,
+                    _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
+                ).Count();
+
+                if (logEntriesBeforeCount < logEntriesAfterCount) break;
+                
+                remainingAttempts--;
+            }
 
             Console.WriteLine(logEntriesBeforeCount.ToString() + " " + logEntriesAfterCount.ToString());
+
             Assert.True(logEntriesBeforeCount < logEntriesAfterCount);
         }
 
