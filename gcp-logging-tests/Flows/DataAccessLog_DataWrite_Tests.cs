@@ -107,7 +107,7 @@ namespace gcp_logging_tests.Flows
             var storage = new Storage();
             storage.CreateObject(projectId, bucketName, objectName, localFilePath);
 
-            Thread.Sleep(6000);
+            Thread.Sleep(8000);
 
             var logEntriesCountNew = LoggingAPI.ListLogEntriesByLogQuery(projectId,
                 _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)

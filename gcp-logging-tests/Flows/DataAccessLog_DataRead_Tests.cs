@@ -80,7 +80,7 @@ namespace gcp_logging_tests.Flows
             var storage = new Storage();
             var res = storage.ReadObject(projectId, bucketName, objectName);
 
-            Thread.Sleep(6000);
+            Thread.Sleep(8000);
 
             // Read Log
             var logEntriesAfterCount = LoggingAPI.ListLogEntriesByLogQuery(projectId,

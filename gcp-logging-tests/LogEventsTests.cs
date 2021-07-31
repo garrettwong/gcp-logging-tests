@@ -46,15 +46,12 @@ namespace gcp_logging_tests
             foreach (var row in logEntries)
             {
                 //Console.WriteLine($"{row.TextPayload.Trim()}");
-                Console.WriteLine(i + ":");
-                Console.WriteLine(JsonConvert.SerializeObject(row));
+                //Console.WriteLine(i + ":");
+                //Console.WriteLine(JsonConvert.SerializeObject(row));
                 i++;
             }
             Assert.NotEmpty(logEntries);
         }
-
-        // logName="projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access"
-
 
         /// <summary>
         /// 
