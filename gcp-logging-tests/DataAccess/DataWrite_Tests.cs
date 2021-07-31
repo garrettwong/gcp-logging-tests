@@ -7,12 +7,12 @@ using Xunit;
 
 namespace gcp_logging_tests.Flows
 {
-    public class DataAccessLog_DataWrite_Tests
+    public class DataWrite_Tests
     {
         private RandomGenerator _randomGenerator;
         private GCPLogQueryGenerator _gcpLogQueryGenerator;
 
-        public DataAccessLog_DataWrite_Tests()
+        public DataWrite_Tests()
         {
             Access.Initiailize();
 
@@ -22,7 +22,7 @@ namespace gcp_logging_tests.Flows
 
 
         [Fact]
-        public void DataWriteTest()
+        public void DataWrite_ShouldPass()
         {
             var projectId = "gwc-sandbox";
             var bucketName = projectId;
@@ -59,7 +59,7 @@ namespace gcp_logging_tests.Flows
         }
 
         [Fact]
-        public void DataWriteCountTest()
+        public void DataWrite_ShouldCreateLog()
         {
             var projectId = "gwc-sandbox";
             var bucketName = projectId;
@@ -88,7 +88,7 @@ namespace gcp_logging_tests.Flows
         }
 
         [Fact]
-        public void DataWrite_ShouldIncrementCountBy1_Test()
+        public void DataWrite_ShouldCreateOneNewLog()
         {
             var projectId = "gwc-sandbox";
             var bucketName = projectId;
