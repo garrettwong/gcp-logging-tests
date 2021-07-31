@@ -87,7 +87,7 @@ namespace gcp_logging_tests.Flows
                 _gcpLogQueryGenerator.GetDataAccessLogQuery(projectId, serviceName, methodName, 5)
             ).Count();
 
-            Console.WriteLine(logEntriesBeforeCount, logEntriesAfterCount);
+            Console.WriteLine(logEntriesBeforeCount.ToString() + " " + logEntriesAfterCount.ToString());
             Assert.True(logEntriesBeforeCount < logEntriesAfterCount);
         }
 
