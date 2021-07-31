@@ -4,10 +4,21 @@ GCP Logging Tests is a security focused solution.  It focuses specifically the e
 
 ## Getting Started
 
+### Prerequisites
+
+* A Google Cloud Project with an associated Billing Account
+* The default role of roles/owner will work.  If you do not have owner, you will need the following roles (`roles/compute.admin, roles/storage.admin, roles/resourcemanager.projectIamAdmin`) for:
+  * Create GCE VMs
+  * Create GCS Buckets
+  * Create Firewall Rules
+  * Update Subnet Configurations
+  * Set IAM Policy
+
 ### Local
 
-1. Download a Service Account Key JSON file from GCP (assume its called `sa-key.json`).
-2. Set an env var, `export GOOGLE_APPLICATION_CREDENTIALS=sa-key.json`
+1. Create a Service Account with the IAM Roles (`roles/compute.admin, roles/storage.admin, roles/resourcemanager.projectIamAdmin, roles/iam.securityReviewer, roles/viewer`)
+2. Download a Service Account Key JSON file from GCP (assume its called `sa-key.json`).
+3. Set an env var, `export GOOGLE_APPLICATION_CREDENTIALS=sa-key.json`
 
 ### Github Actions
 
