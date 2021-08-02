@@ -1,0 +1,29 @@
+{
+  "insertId": "r6wsjofrt0rg6",
+  "jsonPayload": {
+    "packets_sent": "2",
+    "connection": {
+      "dest_ip": "10.128.0.19",
+      "src_port": 443,
+      "dest_port": 46864,
+      "protocol": 6,
+      "src_ip": "172.217.214.95"
+    },
+    "start_time": "2021-07-31T22:36:11.035533768Z",
+    "end_time": "2021-07-31T22:36:11.036341944Z",
+    "reporter": "DEST",
+    "bytes_sent": "0"
+  },
+  "resource": {
+    "type": "gce_subnetwork",
+    "labels": {
+      "location": "us-central1-c",
+      "subnetwork_id": "8295680600432218236",
+      "project_id": "gwc-sandbox",
+      "subnetwork_name": "default"
+    }
+  },
+  "timestamp": "2021-07-31T22:36:13.348485396Z",
+  "logName": "projects/gwc-sandbox/logs/compute.googleapis.com%2Fvpc_flows",
+  "receiveTimestamp": "2021-07-31T22:36:13.348485396Z"
+}
