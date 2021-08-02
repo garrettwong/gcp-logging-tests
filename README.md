@@ -14,6 +14,10 @@ GCP Logging Tests is a security focused solution.  It focuses specifically the e
   * Update Subnet Configurations
   * Set IAM Policy
 
+### Running init.sh
+
+Running `init.sh` will configure your environment for testing.  Running `teardown.sh` will teardown your environment.
+
 ### Local
 
 1. Create a Service Account with the IAM Roles (`roles/compute.admin, roles/storage.admin, roles/resourcemanager.projectIamAdmin, roles/iam.securityReviewer, roles/viewer`)
