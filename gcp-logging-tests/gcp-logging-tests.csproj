@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Compute.v1" Version="1.52.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
     <PackageReference Include="xunit" Version="2.4.1" />

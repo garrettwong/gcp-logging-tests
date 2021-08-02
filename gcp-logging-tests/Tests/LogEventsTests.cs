@@ -76,9 +76,9 @@ namespace gcp_logging_tests
             var logEntries = LoggingAPI.ListLogEntriesByLogQuery("gwc-sandbox",
                 "logName=\"projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
                 "protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"2021-07-26T2:40:00-04:00\"");
+            
             foreach (var row in logEntries)
             {
-
                 var log = JsonConvert.SerializeObject(row);
 
                 var jsonLog = JsonConvert.DeserializeObject(log);
@@ -92,6 +92,7 @@ namespace gcp_logging_tests
 
                 break; // the first log element should be the one that was just logged
             }
+
             Assert.NotEmpty(logEntries);
         }
 
