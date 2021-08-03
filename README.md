@@ -7,7 +7,7 @@ GCP Logging Tests is a security focused solution.  It focuses specifically the e
 ### Prerequisites
 
 * A Google Cloud Project with an associated Billing Account
-* The default role of roles/owner will work.  If you do not have owner, you will need the following roles (`roles/compute.admin, roles/storage.admin, roles/resourcemanager.projectIamAdmin`) for:
+* The default role of roles/owner will work.  If you do not have owner, you will need the following roles: (`roles/compute.admin, roles/storage.admin, roles/resourcemanager.projectIamAdmin`) for:
   * Create GCE VMs
   * Create GCS Buckets
   * Create Firewall Rules
