@@ -81,7 +81,7 @@ namespace gcp_logging_tests.FirewallLogTests
         [Fact]
         public void FirewallLog_TestOpenPorts()
         {
-            for (var i = 79; i < 82; i++)
+            for (var i = 79; i < 81; i++)
             {
                 using (TcpClient tcpClient = new TcpClient())
                 {
@@ -93,7 +93,7 @@ namespace gcp_logging_tests.FirewallLogTests
                         tcpClient.Connect(_knownVmIp, i);
                         Console.WriteLine($"Port {i} open");
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         Console.WriteLine($"Port {i} closed");
                     }
