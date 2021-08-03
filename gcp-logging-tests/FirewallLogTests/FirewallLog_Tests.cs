@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using Xunit;
 
 namespace gcp_logging_tests.FirewallLogTests
@@ -54,11 +55,19 @@ namespace gcp_logging_tests.FirewallLogTests
                 .AddressList
                 .FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
         }
+        private string GetExternalIP()
+        {
+            var client = new RestClient("https://ifconfig.co");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            IRestResponse response = client.Execute(request);
+            return response.Content;
+        }
 
         [Fact]
         public void FirewallLog_TestGetRequest()
         {
-            var ip = LocalIPAddress();
+            var ip = GetExternalIP();
             Console.WriteLine(ip.ToString());
 
             var client = new RestClient($"http://{_knownVmIp}/");
