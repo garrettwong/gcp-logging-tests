@@ -71,7 +71,6 @@ namespace gcp_logging_tests.FirewallLogTests
             Console.WriteLine(ip.ToString());
 
             var client = new RestClient($"http://{_knownVmIp}/");
-            client.Timeout = 500;
             var request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");
             IRestResponse response = client.Execute(request);
@@ -82,7 +81,7 @@ namespace gcp_logging_tests.FirewallLogTests
         [Fact]
         public void FirewallLog_TestOpenPorts()
         {
-            for (var i = 78; i < 82; i++)
+            for (var i = 79; i < 82; i++)
             {
                 using (TcpClient tcpClient = new TcpClient())
                 {
@@ -96,7 +95,7 @@ namespace gcp_logging_tests.FirewallLogTests
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Port closed");
+                        Console.WriteLine($"Port {i} closed");
                     }
                 }
             }
