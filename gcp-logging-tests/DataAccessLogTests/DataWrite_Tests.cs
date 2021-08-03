@@ -28,7 +28,7 @@ namespace gcp_logging_tests.DataAccessLogTests
             var projectId = "gwc-sandbox";
             var bucketName = projectId;
             var objectName = "superobject";
-            var localFilePath = "TEMP.txt";
+            var localFilePath = "Content/TEMP.txt";
 
             // Write Data
             var storage = new Storage();
@@ -65,7 +65,7 @@ namespace gcp_logging_tests.DataAccessLogTests
             var projectId = "gwc-sandbox";
             var bucketName = projectId;
             var objectName = "superobject" + _randomGenerator.GetRandomHexNumber(8);
-            var localFilePath = "TEMP.txt";
+            var localFilePath = "Content/TEMP.txt";
 
             // Write Data
             var storage = new Storage();
@@ -94,7 +94,7 @@ namespace gcp_logging_tests.DataAccessLogTests
             var projectId = "gwc-sandbox";
             var bucketName = projectId;
             var objectName = "superobject" + _randomGenerator.GetRandomHexNumber(8);
-            var localFilePath = "TEMP.txt";
+            var localFilePath = "Content/TEMP.txt";
 
             var serviceName = "storage.googleapis.com";
             var methodName = "storage.objects.create";

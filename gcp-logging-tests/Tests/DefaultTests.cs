@@ -12,8 +12,11 @@ namespace gcp_logging_tests
 {
     public class DefaultTests
     {
+        private readonly string _projectId;
         public DefaultTests()
         {
+            _projectId = Global.PROJECT_ID;
+
             Access.Initiailize();
         }
 
@@ -195,7 +198,7 @@ namespace gcp_logging_tests
         public async Task LogsList()
         {
             var token = await GetAccessToken();
-            var url = "https://logging.googleapis.com/v2/projects/gwc-sandbox/logs";
+            var url = $"https://logging.googleapis.com/v2/projects/{_projectId}/logs";
             using var client = new HttpClient();
             client.Timeout = TimeSpan.FromSeconds(10);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);

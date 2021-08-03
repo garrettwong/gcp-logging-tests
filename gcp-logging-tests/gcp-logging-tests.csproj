@@ -35,10 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="fviz-package.json">
+    <None Update="Content\fviz-package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="TEMP.txt">
+    <None Update="Content\TEMP.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

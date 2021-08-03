@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using Xunit;
 
 namespace gcp_logging_tests.FirewallLogTests
@@ -110,18 +109,14 @@ LIMIT 1000
 FROM `gwc-sandbox.vpc_flows.compute_googleapis_com_vpc_flows_2021*` 
 WHERE jsonPayload.connection.src_ip = '107.139.105.69'
 ORDER BY timestamp DESC
-
-
          */
-
-
 
         [Fact]
         public void PostContentToApache()
         {
             var client = new RestClient($"http://{_knownVmIp}/");
             var request = new RestRequest(Method.POST);
-            var text = File.ReadAllText("fviz-package.json");
+            var text = File.ReadAllText("Content/fviz-package.json");
             request.AddParameter("undefined", text, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
             Assert.NotNull(response.Content);
