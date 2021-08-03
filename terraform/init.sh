@@ -41,6 +41,11 @@ function create_instance() {
         --reservation-affinity=any
 }
 
+function create_gke() {
+    gcloud beta container \
+        --project "gwc-sandbox" clusters create "elk" --region "us-central1" --no-enable-basic-auth --cluster-version "1.20.8-gke.900" --release-channel "regular" --machine-type "e2-medium" --image-type "COS_CONTAINERD" --disk-type "pd-standard" --disk-size "100" --metadata disable-legacy-endpoints=true --scopes "https://www.googleapis.com/auth/cloud-platform" --max-pods-per-node "110" --num-nodes "1" --enable-stackdriver-kubernetes --enable-ip-alias --network "projects/gwc-sandbox/global/networks/default" --subnetwork "projects/gwc-sandbox/regions/us-central1/subnetworks/default" --enable-intra-node-visibility --default-max-pods-per-node "110" --enable-autoscaling --min-nodes "0" --max-nodes "3" --enable-network-policy --no-enable-master-authorized-networks --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 --workload-pool "gwc-sandbox.svc.id.goog" --enable-shielded-nodes --shielded-secure-boot
+}
+
 # 1. Create Firewall Rules with Logging Enabled
 # for (1) Allow all http and (2) Deny all others
 gcloud compute \
