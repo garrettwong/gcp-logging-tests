@@ -35,6 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="fviz-package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="TEMP.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
