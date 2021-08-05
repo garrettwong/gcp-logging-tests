@@ -16,15 +16,19 @@ namespace gcp_logging_tests
     /// dotnet 5.0.x
     public class LogEventsTests
     {
+        private readonly string _projectId;
+
         public LogEventsTests()
         {
+            _projectId = Global.PROJECT_ID;
+
             Access.Initiailize();
         }
 
         [Fact]
         public void WriteLogTest()
         {
-            LoggingAPI.WriteLogEntry("gwc-sandbox", "hello", "world");
+            LoggingAPI.WriteLogEntry(Global.PROJECT_ID, "hello", "world");
         }
 
         /// <summary>
@@ -35,21 +39,13 @@ namespace gcp_logging_tests
         public void ListLogEntriesTest()
         {
             // Write twice just in case
-            LoggingAPI.WriteLogEntry("gwc-sandbox", "hello", "world");
+            LoggingAPI.WriteLogEntry(Global.PROJECT_ID, "hello", "world");
             Thread.Sleep(5000);
-            LoggingAPI.WriteLogEntry("gwc-sandbox", "hello", "world2");
+            LoggingAPI.WriteLogEntry(Global.PROJECT_ID, "hello", "world2");
             Thread.Sleep(5000);
 
-            var logEntries = LoggingAPI.ListLogEntries("gwc-sandbox", "hello");
+            var logEntries = LoggingAPI.ListLogEntries(Global.PROJECT_ID, "hello");
 
-            var i = 0;
-            foreach (var row in logEntries)
-            {
-                //Console.WriteLine($"{row.TextPayload.Trim()}");
-                //Console.WriteLine(i + ":");
-                //Console.WriteLine(JsonConvert.SerializeObject(row));
-                i++;
-            }
             Assert.NotEmpty(logEntries);
         }
 
@@ -63,7 +59,7 @@ namespace gcp_logging_tests
             var token = await Access.GetAccessToken();
 
             // Get Buckets API Call
-            var storageUrl = "https://storage.googleapis.com/storage/v1/b?project=gwc-sandbox";
+            var storageUrl = $"https://storage.googleapis.com/storage/v1/b?project={_projectId}";
 
             using var client = new HttpClient();
             client.Timeout = TimeSpan.FromSeconds(10);
@@ -73,8 +69,8 @@ namespace gcp_logging_tests
 
             Assert.NotNull(r);
 
-            var logEntries = LoggingAPI.ListLogEntriesByLogQuery("gwc-sandbox",
-                "logName=\"projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
+            var logEntries = LoggingAPI.ListLogEntriesByLogQuery(_projectId,
+                $"logName=\"projects/{_projectId}/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
                 "protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"2021-07-26T2:40:00-04:00\"");
             
             foreach (var row in logEntries)
@@ -107,15 +103,15 @@ namespace gcp_logging_tests
             var token = await Access.GetAccessToken();
 
             // Get Buckets API Call
-            var storageUrl = "https://storage.googleapis.com/storage/v1/b?project=gwc-sandbox";
+            var storageUrl = $"https://storage.googleapis.com/storage/v1/b?project={_projectId}";
 
             using var client = new HttpClient();
             client.Timeout = TimeSpan.FromSeconds(10);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var r = await client.GetStringAsync(storageUrl);
+            var res = await client.GetStringAsync(storageUrl);
 
-            Assert.NotNull(r);
+            Assert.NotNull(res);
         }
     }
 }

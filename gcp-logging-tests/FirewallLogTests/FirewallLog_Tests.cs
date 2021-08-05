@@ -16,7 +16,7 @@ namespace gcp_logging_tests.FirewallLogTests
         private GCPLogQueryGenerator _gcpLogQueryGenerator;
         private string _knownVmIp;
 
-        private const string PROJECT_ID = "gwc-sandbox";
+        private readonly string PROJECT_ID = Global.PROJECT_ID;
         private const string ZONE = "us-central1-a";
         private const string INSTANCE = "apache";
         private const string DEFAULT_IP = "34.134.129.29";
@@ -99,17 +99,6 @@ namespace gcp_logging_tests.FirewallLogTests
                 }
             }
         }
-
-        /*
-         SELECT * 
-FROM `gwc-sandbox.firewall.compute_googleapis_com_firewall_20210802` ORDER BY timestamp desc 
-LIMIT 1000
-
-        SELECT * 
-FROM `gwc-sandbox.vpc_flows.compute_googleapis_com_vpc_flows_2021*` 
-WHERE jsonPayload.connection.src_ip = '107.139.105.69'
-ORDER BY timestamp DESC
-         */
 
         [Fact]
         public void PostContentToApache()

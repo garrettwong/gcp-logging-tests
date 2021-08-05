@@ -25,7 +25,7 @@ namespace gcp_logging_tests.DataAccessLogTests
         [Fact]
         public void DataWrite_ShouldPass()
         {
-            var projectId = "gwc-sandbox";
+            var projectId = Global.PROJECT_ID;
             var bucketName = projectId;
             var objectName = "superobject";
             var localFilePath = "Content/TEMP.txt";
@@ -36,8 +36,8 @@ namespace gcp_logging_tests.DataAccessLogTests
 
 
             // Read Log
-            var logEntries = LoggingAPI.ListLogEntriesByLogQuery("gwc-sandbox",
-                "logName=\"projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
+            var logEntries = LoggingAPI.ListLogEntriesByLogQuery(projectId,
+                $"logName=\"projects/{projectId}/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
                 "protoPayload.serviceName=\"storage.googleapis.com\" AND protoPayload.serviceName=\"storage.objects.create\" AND " +
                 " timestamp >= \"2021-07-27T2:40:00-04:00\"");
 
@@ -50,7 +50,7 @@ namespace gcp_logging_tests.DataAccessLogTests
                 Assert.Equal("storage.googleapis.com", cal.ServiceName);
                 Assert.Equal("gcp-csharp-app@gwc-core.iam.gserviceaccount.com", cal.AuthenticationInfo.PrincipalEmail);
                 Assert.NotNull(cal.RequestMetadata.CallerIp);
-                Assert.Equal("projects/_/buckets/gwc-sandbox/objects/superobject", cal.ResourceName);
+                Assert.Equal($"projects/_/buckets/{projectId}/objects/superobject", cal.ResourceName);
                 Assert.NotNull(cal.RequestMetadata.RequestAttributes.Time.ToString().Replace("\"", ""));
 
                 break; // the first log element should be the one that was just logged
@@ -62,7 +62,7 @@ namespace gcp_logging_tests.DataAccessLogTests
         [Fact]
         public void DataWrite_ShouldCreateLog()
         {
-            var projectId = "gwc-sandbox";
+            var projectId = Global.PROJECT_ID;
             var bucketName = projectId;
             var objectName = "superobject" + _randomGenerator.GetRandomHexNumber(8);
             var localFilePath = "Content/TEMP.txt";
@@ -73,9 +73,9 @@ namespace gcp_logging_tests.DataAccessLogTests
 
 
             // Read Log
-            var logEntries = LoggingAPI.ListLogEntriesByLogQuery("gwc-sandbox",
+            var logEntries = LoggingAPI.ListLogEntriesByLogQuery(projectId,
 
-                "logName=\"projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
+                $"logName=\"projects/{projectId}/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
                 "protoPayload.serviceName=\"storage.googleapis.com\" AND protoPayload.methodName=\"storage.objects.create\" AND " +
                 " timestamp >= \"2021-07-27T2:40:00-04:00\"");
 
@@ -91,7 +91,7 @@ namespace gcp_logging_tests.DataAccessLogTests
         [Fact]
         public void DataWrite_ShouldCreateOneNewLog()
         {
-            var projectId = "gwc-sandbox";
+            var projectId = Global.PROJECT_ID;
             var bucketName = projectId;
             var objectName = "superobject" + _randomGenerator.GetRandomHexNumber(8);
             var localFilePath = "Content/TEMP.txt";

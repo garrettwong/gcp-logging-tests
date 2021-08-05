@@ -52,7 +52,7 @@ namespace gcp_logging_tests
         [Fact]
         public async Task FunctionsCall()
         {
-            var functionUrl = "https://us-central1-gwc-sandbox.cloudfunctions.net/dotnet-time-function";
+            var functionUrl = $"https://us-central1-{_projectId}.cloudfunctions.net/dotnet-time-function";
 
             var token = await GetBearerToken(functionUrl);
 
@@ -60,14 +60,14 @@ namespace gcp_logging_tests
             client.Timeout = TimeSpan.FromSeconds(10);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var r = await client.GetStringAsync(functionUrl);
+            var res = await client.GetStringAsync(functionUrl);
 
-            Assert.NotNull(r);
+            Assert.NotNull(res);
         }
 
 
         [Fact]
-        public async Task MultiApiFlow()
+        public async Task GetIamCredentials()
         {
             var token = await GetAccessToken();
 
@@ -94,21 +94,28 @@ namespace gcp_logging_tests
             var s = r.Content.ReadAsStringAsync();
             var o = JsonConvert.DeserializeObject<dynamic>(s.Result);
             var accessToken = o.accessToken.ToString();
+            Assert.NotNull(accessToken);
+        }
+
+        [Fact]
+        public async Task MultiApiFlow()
+        {
+            var token = await GetAccessToken();
 
             // API Client Lib Call
             var gc = GoogleCredential.GetApplicationDefault();
             var sc = StorageClient.Create(gc);
-            var projectId = "gwc-sandbox";
+            var projectId = Global.PROJECT_ID;
             var buckets = sc.ListBuckets(projectId);
 
             // Get Buckets API Call
-            var storageUrl = "https://storage.googleapis.com/storage/v1/b?project=gwc-sandbox";
+            var storageUrl = $"https://storage.googleapis.com/storage/v1/b?project={projectId}";
 
             using var client2 = new HttpClient();
             client2.Timeout = TimeSpan.FromSeconds(10);
             client2.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var r2 = await client2.GetStringAsync(storageUrl);
+            var r = await client2.GetStringAsync(storageUrl);
 
             Assert.NotNull(r);
         }
@@ -150,7 +157,7 @@ namespace gcp_logging_tests
         }
 
         /// <summary>
-        /// https://cloud.google.com/storage/docs/json_api/v1/buckets/list?apix_params=%7B%22project%22%3A%22gwc-sandbox%22%7D
+        /// Lists buckets using the Client Library
         /// </summary>
         /// <returns></returns>
         [Fact]
@@ -161,7 +168,7 @@ namespace gcp_logging_tests
             // API Client Lib Call
             var gc = GoogleCredential.GetApplicationDefault();
             var sc = StorageClient.Create(gc);
-            var projectId = "gwc-sandbox";
+            var projectId = Global.PROJECT_ID;
             var buckets = sc.ListBuckets(projectId);
             // foreach (var bucket in buckets)
             // {
@@ -170,24 +177,25 @@ namespace gcp_logging_tests
         }
 
         /// <summary>
-        /// https://cloud.google.com/storage/docs/json_api/v1/buckets/list?apix_params=%7B%22project%22%3A%22gwc-sandbox%22%7D
+        /// Lists buckets using an API call
         /// </summary>
         /// <returns></returns>
         [Fact]
         public async Task BucketsList()
         {
             var token = await GetAccessToken();
+            var projectId = Global.PROJECT_ID;
 
             // Get Buckets API Call
-            var storageUrl = "https://storage.googleapis.com/storage/v1/b?project=gwc-sandbox";
+            var storageUrl = $"https://storage.googleapis.com/storage/v1/b?project={projectId}";
 
             using var client = new HttpClient();
             client.Timeout = TimeSpan.FromSeconds(10);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var r = await client.GetStringAsync(storageUrl);
+            var res = await client.GetStringAsync(storageUrl);
 
-            Assert.NotNull(r);
+            Assert.NotNull(res);
         }
 
         /// <summary>
@@ -203,9 +211,9 @@ namespace gcp_logging_tests
             client.Timeout = TimeSpan.FromSeconds(10);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var r = await client.GetStringAsync(url);
+            var res = await client.GetStringAsync(url);
 
-            Assert.NotNull(r);
+            Assert.NotNull(res);
         }
     }
 }
