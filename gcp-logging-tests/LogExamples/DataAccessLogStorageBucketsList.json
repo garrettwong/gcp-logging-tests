@@ -34,13 +34,13 @@
   "resource": {
     "type": "gcs_bucket",
     "labels": {
-      "project_id": "gwc-sandbox",
+      "project_id": "[PROJECT_ID]",
       "location": "global",
       "bucket_name": ""
     }
   },
   "timestamp": "2021-07-27T04:43:45.052936915Z",
   "severity": "INFO",
-  "logName": "projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access",
+  "logName": "projects/[PROJECT_ID]/logs/cloudaudit.googleapis.com%2Fdata_access",
   "receiveTimestamp": "2021-07-27T04:43:45.907857582Z"
 }
