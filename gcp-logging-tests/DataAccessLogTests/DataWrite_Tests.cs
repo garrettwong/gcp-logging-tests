@@ -34,12 +34,14 @@ namespace gcp_logging_tests.DataAccessLogTests
             var storage = new Storage();
             storage.CreateObject(projectId, bucketName, objectName, localFilePath);
 
+            var d = DateTime.Now.AddHours(-2);
+            var v = d.ToString("o");
 
             // Read Log
             var logEntries = LoggingAPI.ListLogEntriesByLogQuery(projectId,
                 $"logName=\"projects/{projectId}/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
                 "protoPayload.serviceName=\"storage.googleapis.com\" AND protoPayload.serviceName=\"storage.objects.create\" AND " +
-                " timestamp >= \"2021-07-27T2:40:00-04:00\"");
+                $" timestamp >= \"{v}\"");
 
             foreach (var row in logEntries)
             {
@@ -71,13 +73,15 @@ namespace gcp_logging_tests.DataAccessLogTests
             var storage = new Storage();
             storage.CreateObject(projectId, bucketName, objectName, localFilePath);
 
+            var d = DateTime.Now.AddHours(-2);
+            var v = d.ToString("o");
 
             // Read Log
             var logEntries = LoggingAPI.ListLogEntriesByLogQuery(projectId,
 
                 $"logName=\"projects/{projectId}/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
                 "protoPayload.serviceName=\"storage.googleapis.com\" AND protoPayload.methodName=\"storage.objects.create\" AND " +
-                " timestamp >= \"2021-07-27T2:40:00-04:00\"");
+                $" timestamp >= \"{v}\"");
 
             var count = 0;
             foreach (var row in logEntries)
@@ -85,7 +89,7 @@ namespace gcp_logging_tests.DataAccessLogTests
                 count++;
             }
 
-            Assert.True(count > 30);
+            Assert.True(count > 1);
         }
 
         [Fact]

@@ -69,9 +69,11 @@ namespace gcp_logging_tests
 
             Assert.NotNull(r);
 
+            var d = DateTime.Now.AddHours(-2);
+            var v = d.ToString("o");
             var logEntries = LoggingAPI.ListLogEntriesByLogQuery(_projectId,
                 $"logName=\"projects/{_projectId}/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
-                "protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"2021-07-26T2:40:00-04:00\"");
+                $"protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"{v}\"");
             
             foreach (var row in logEntries)
             {
