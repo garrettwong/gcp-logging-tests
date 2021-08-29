@@ -76,6 +76,9 @@ namespace gcp_logging_tests.DataAccessLogTests
             var d = DateTime.Now.AddHours(-2);
             var v = d.ToString("o");
 
+            // sleep up to 10 seconds
+            Thread.Sleep(10000);
+
             // Read Log
             var logEntries = LoggingAPI.ListLogEntriesByLogQuery(projectId,
 

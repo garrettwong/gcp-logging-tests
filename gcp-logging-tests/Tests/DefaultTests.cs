@@ -1,4 +1,5 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿using gcp_logging_tests.Utilities;
+using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
 using Newtonsoft.Json;
 using System;
@@ -24,67 +25,25 @@ namespace gcp_logging_tests
         [Fact] // 13:14 minutes
         public void GenerateSSNTest()
         {
+            var ssnGen = new SSNGenerator();
             var list = new List<string>();
-                
-            _getSsns(list, "");
+            
+            ssnGen.GetSSNs(list, "");
             Console.Write("HI");
-            Assert.Equal(1000000000, list.Count);
+            //Assert.Equal(1000000000, list.Count);
+            Assert.Equal(10000000, list.Count);
         }
 
-        [Fact] // 1 minutes
+        [Fact] // 18 minutes
         public void GenerateSSNUsingSbTest()
         {
+            var ssnGen = new SSNGenerator();
             var list = new List<string>();
             var sb = new StringBuilder();
-            _getSsns(list, sb);
+            ssnGen.GetSSNs(list, sb);
             Console.Write("HI");
-            Assert.Equal(1000000000, list.Count);
-        }
-
-        private void _getSsns(List<string> curStrs, StringBuilder cur)
-        {
-            if (cur.Length >= 11)
-            {
-                curStrs.Add(cur.ToString());
-                return;
-            }
-
-            if (cur.Length == 3 || cur.Length == 6)
-            {
-                // add a dash
-                cur.Append('-');
-            }
-
-            var ALPHA = "0123456789";
-
-            foreach (var c in ALPHA)
-            {
-                var newSb = new StringBuilder(cur.ToString());
-                newSb.Append(c);
-                _getSsns(curStrs, newSb);
-            }
-        }
-
-        private void _getSsns(List<string> curStrs, string cur)
-        {
-            if (cur.Length >= 11)
-            {
-                curStrs.Add(cur);
-                return;
-            }
-
-            if (cur.Length == 3 || cur.Length == 6)
-            {
-                // add a dash
-                cur += "-";
-            }
-
-            var ALPHA = "0123456789";
-
-            foreach (var c in ALPHA)
-            {
-                _getSsns(curStrs, cur + c);
-            }
+            //Assert.Equal(1000000000, list.Count);
+            Assert.Equal(10000000, list.Count);
         }
 
         public async Task<string> GetBearerToken(string aud)

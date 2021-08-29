@@ -12,7 +12,9 @@ namespace gcp_logging_tests.Utilities
 
         public void GetSSNs(List<string> curStrs, StringBuilder cur)
         {
-            if (cur.Length >= 11)
+            //const int NORMAL_LEN = 11;
+            const int NORMAL_LEN = 9;
+            if (cur.Length >= NORMAL_LEN)
             {
                 curStrs.Add(cur.ToString());
                 return;
@@ -36,7 +38,9 @@ namespace gcp_logging_tests.Utilities
 
         public void GetSSNs(List<string> curStrs, string cur)
         {
-            if (cur.Length >= 11)
+            //const int NORMAL_LEN = 11;
+            const int NORMAL_LEN = 9;
+            if (cur.Length >= NORMAL_LEN)
             {
                 curStrs.Add(cur);
                 return;
