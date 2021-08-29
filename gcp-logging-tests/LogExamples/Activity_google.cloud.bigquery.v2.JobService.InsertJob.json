@@ -10,20 +10,20 @@
     "methodName": "google.cloud.bigquery.v2.JobService.InsertJob",
     "authorizationInfo": [
       {
-        "resource": "projects/gwc-sandbox/datasets/asset_csharp_42ba0ffd_d6f8_44a0_8a49_c008e1cc127f",
+        "resource": "projects/[PROJECT_ID]/datasets/asset_csharp_42ba0ffd_d6f8_44a0_8a49_c008e1cc127f",
         "permission": "bigquery.tables.create",
         "granted": true
       }
     ],
-    "resourceName": "projects/gwc-sandbox/datasets/asset_csharp_42ba0ffd_d6f8_44a0_8a49_c008e1cc127f/tables/client_library_table_analysis",
+    "resourceName": "projects/[PROJECT_ID]/datasets/asset_csharp_42ba0ffd_d6f8_44a0_8a49_c008e1cc127f/tables/client_library_table_analysis",
     "metadata": {
       "tableCreation": {
         "table": {
-          "tableName": "projects/gwc-sandbox/datasets/asset_csharp_42ba0ffd_d6f8_44a0_8a49_c008e1cc127f/tables/client_library_table_analysis",
+          "tableName": "projects/[PROJECT_ID]/datasets/asset_csharp_42ba0ffd_d6f8_44a0_8a49_c008e1cc127f/tables/client_library_table_analysis",
           "schemaJson": "{\n  \"fields\": [{\n    \"name\": \"opName\",\n    \"type\": \"STRING\",\n    \"mode\": \"NULLABLE\"\n  }, {\n    \"name\": \"analysisId\",\n    \"type\": \"INTEGER\",\n    \"mode\": \"NULLABLE\"\n  }, {\n    \"name\": \"requestTime\",\n    \"type\": \"TIMESTAMP\",\n    \"mode\": \"NULLABLE\"\n  }, {\n    \"name\": \"analysis\",\n    \"type\": \"RECORD\",\n    \"mode\": \"NULLABLE\",\n    \"schema\": {\n      \"fields\": [{\n        \"name\": \"analysisQuery\",\n        \"type\": \"RECORD\",\n        \"mode\": \"NULLABLE\",\n        \"schema\": {\n          \"fields\": [{\n            \"name\": \"scope\",\n            \"type\": \"STRING\",\n            \"mode\": \"NULLABLE\"\n          }, {\n            \"name\": \"resourceSelector\",\n            \"type\": \"RECORD\",\n            \"mode\": \"NULLABLE\",\n            \"schema\": {\n              \"fields\": [{\n                \"name\": \"fullResourceName\",\n                \"type\": \"STRING\",\n                \"mode\": \"NULLABLE\"\n              }]\n            }\n          }, {\n            \"name\": \"identitySelector\",\n            \"type\": \"RECORD\",\n            \"mode\": \"NULLABLE\",\n            \"schema\": {\n              \"fields\": [{\n                \"name\": \"identity\",\n                \"type\": \"STRING\",\n                \"mode\": \"NULLABLE\"\n              }]\n            }\n          }, {\n            \"name\": \"accessSelector\",\n            \"type\": \"RECORD\",\n            \"mode\": \"NULLABLE\",\n            \"schema\": {\n              \"fields\": [{\n                \"name\": \"roles\",\n                \"type\": \"STRING\",\n                \"mode\": \"REPEATED\"\n              }, {\n                \"name\": \"permissions\",\n                \"type\": \"STRING\",\n                \"mode\": \"REPEATED\"\n              }]\n            }\n          }, {\n            \"name\": \"options\",\n            \"type\": \"RECORD\",\n            \"mode\": \"NULLABLE\",\n            \"schema\": {\n              \"fields\": [{\n                \"name\": \"expandGroups\",\n                \"type\": \"BOOLEAN\",\n                \"mode\": \"NULLABLE\"\n              }, {\n                \"name\": \"expandRoles\",\n                \"type\": \"BOOLEAN\",\n                \"mode\": \"NULLABLE\"\n              }, {\n                \"name\": \"expandResources\",\n                \"type\": \"BOOLEAN\",\n                \"mode\": \"NULLABLE\"\n              }, {\n                \"name\": \"outputResourceEdges\",\n                \"type\": \"BOOLEAN\",\n                \"mode\": \"NULLABLE\"\n              }, {\n                \"name\": \"outputGroupEdges\",\n                \"type\": \"BOOLEAN\",\n                \"mode\": \"NULLABLE\"\n              }, {\n                \"name\": \"analyzeServiceAccountImpersonation\",\n                \"type\": \"BOOLEAN\",\n                \"mode\": \"NULLABLE\"\n              }]\n            }\n          }, {\n            \"name\": \"conditionContext\",\n            \"type\": \"RECORD\",\n            \"mode\": \"NULLABLE\",\n            \"schema\": {\n              \"fields\": [{\n                \"name\": \"accessTime\",\n                \"type\": \"TIMESTAMP\",\n                \"mode\": \"NULLABLE\"\n              }]\n            }\n          }]\n        }\n      }, {\n        \"name\": \"fullyExplored\",\n        \"type\": \"BOOLEAN\",\n        \"mode\": \"NULLABLE\"\n      }, {\n        \"name\": \"nonCriticalErrors\",\n        \"type\": \"RECORD\",\n        \"mode\": \"REPEATED\",\n        \"schema\": {\n          \"fields\": [{\n            \"name\": \"code\",\n            \"type\": \"STRING\",\n            \"mode\": \"NULLABLE\"\n          }, {\n            \"name\": \"cause\",\n            \"type\": \"STRING\",\n            \"mode\": \"NULLABLE\"\n          }]\n        }\n      }]\n    }\n  }]\n}"
         },
         "reason": "JOB",
-        "jobName": "projects/gwc-sandbox/jobs/projects_gwc-sandbox_operations_AnalyzeIamPolicyLongrunning_32701904035556918143270190403555690251_analysis"
+        "jobName": "projects/[PROJECT_ID]/jobs/projects_[PROJECT_ID]_operations_AnalyzeIamPolicyLongrunning_32701904035556918143270190403555690251_analysis"
       },
       "@type": "type.googleapis.com/google.cloud.audit.BigQueryAuditMetadata"
     }
@@ -33,11 +33,11 @@
     "type": "bigquery_dataset",
     "labels": {
       "dataset_id": "asset_csharp_42ba0ffd_d6f8_44a0_8a49_c008e1cc127f",
-      "project_id": "gwc-sandbox"
+      "project_id": "[PROJECT_ID]"
     }
   },
   "timestamp": "2021-07-29T00:07:22.661023Z",
   "severity": "NOTICE",
-  "logName": "projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Factivity",
+  "logName": "projects/[PROJECT_ID]/logs/cloudaudit.googleapis.com%2Factivity",
   "receiveTimestamp": "2021-07-29T00:07:23.533208341Z"
 }

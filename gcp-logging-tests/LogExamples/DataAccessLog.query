@@ -1,1 +1,1 @@
-logName="projects/gwc-sandbox/logs/cloudaudit.googleapis.com%2Fdata_access"
+logName="projects/[PROJECT_ID]/logs/cloudaudit.googleapis.com%2Fdata_access"

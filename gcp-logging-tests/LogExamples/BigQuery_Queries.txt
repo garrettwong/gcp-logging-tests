@@ -1,0 +1,10 @@
+﻿/*
+SELECT * 
+FROM `[PROJECT_ID].firewall.compute_googleapis_com_firewall_20210802` ORDER BY timestamp desc 
+LIMIT 1000
+
+SELECT * 
+FROM `[PROJECT_ID].vpc_flows.compute_googleapis_com_vpc_flows_2021*` 
+WHERE jsonPayload.connection.src_ip = '107.139.105.69'
+ORDER BY timestamp DESC
+*/

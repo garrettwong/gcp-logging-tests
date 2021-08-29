@@ -2,7 +2,7 @@
   "insertId": "1ji3wewfqhwz1t",
   "jsonPayload": {
     "instance": {
-      "project_id": "gwc-sandbox",
+      "project_id": "[PROJECT_ID]",
       "vm_name": "apache",
       "zone": "us-central1-a",
       "region": "us-central1"
@@ -43,7 +43,7 @@
     "vpc": {
       "vpc_name": "default",
       "subnetwork_name": "default",
-      "project_id": "gwc-sandbox"
+      "project_id": "[PROJECT_ID]"
     }
   },
   "resource": {
@@ -51,11 +51,11 @@
     "labels": {
       "subnetwork_name": "default",
       "subnetwork_id": "8295680600432218236",
-      "project_id": "gwc-sandbox",
+      "project_id": "[PROJECT_ID]",
       "location": "us-central1-a"
     }
   },
   "timestamp": "2021-07-31T21:52:21.162487386Z",
-  "logName": "projects/gwc-sandbox/logs/compute.googleapis.com%2Ffirewall",
+  "logName": "projects/[PROJECT_ID]/logs/compute.googleapis.com%2Ffirewall",
   "receiveTimestamp": "2021-07-31T21:52:30.970671819Z"
 }

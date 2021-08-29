@@ -23,7 +23,7 @@ namespace gcp_logging_tests.DataAccessLogTests
         [Fact]
         public void DataRead_ShouldPass()
         {
-            var projectId = "gwc-sandbox";
+            var projectId = Global.PROJECT_ID;
             var bucketName = projectId;
             var objectName = "superobject";
 
@@ -36,7 +36,7 @@ namespace gcp_logging_tests.DataAccessLogTests
         [Fact]
         public void DataRead_ShouldCreateOneNewLog()
         {
-            var projectId = "gwc-sandbox";
+            var projectId = Global.PROJECT_ID;
             var bucketName = projectId;
             var objectName = "superobject";
 

@@ -115,9 +115,10 @@ namespace gcp_logging_tests.API
 
         public static void Test(string logId)
         {
+            var projectId = Global.PROJECT_ID;
             var client = LoggingServiceV2Client.Create();
-            LogName logName = new LogName("gwc-sandbox", logId);
-            ProjectName projectName = new ProjectName("gwc-sandbox");
+            LogName logName = new LogName(projectId, logId);
+            ProjectName projectName = new ProjectName(projectId);
             var results = client.ListLogEntries(Enumerable.Repeat(projectName, 1), $"timestamp >= \"2021-07-27T2:40:00-04:00\" AND logName={logName.ToString()}",
                 "timestamp desc", callSettings: _retryAWhile);
 

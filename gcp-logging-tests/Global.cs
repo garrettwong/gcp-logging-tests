@@ -6,6 +6,5 @@
     public class Global
     {
         public static readonly string PROJECT_ID = "gwc-sandbox";
-
     }
 }
