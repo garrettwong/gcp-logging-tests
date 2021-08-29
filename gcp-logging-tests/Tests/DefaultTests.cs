@@ -2,6 +2,7 @@
 using Google.Cloud.Storage.V1;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -18,6 +19,72 @@ namespace gcp_logging_tests
             _projectId = Global.PROJECT_ID;
 
             Access.Initiailize();
+        }
+
+        [Fact] // 13:14 minutes
+        public void GenerateSSNTest()
+        {
+            var list = new List<string>();
+                
+            _getSsns(list, "");
+            Console.Write("HI");
+            Assert.Equal(1000000000, list.Count);
+        }
+
+        [Fact] // 1 minutes
+        public void GenerateSSNUsingSbTest()
+        {
+            var list = new List<string>();
+            var sb = new StringBuilder();
+            _getSsns(list, sb);
+            Console.Write("HI");
+            Assert.Equal(1000000000, list.Count);
+        }
+
+        private void _getSsns(List<string> curStrs, StringBuilder cur)
+        {
+            if (cur.Length >= 11)
+            {
+                curStrs.Add(cur.ToString());
+                return;
+            }
+
+            if (cur.Length == 3 || cur.Length == 6)
+            {
+                // add a dash
+                cur.Append('-');
+            }
+
+            var ALPHA = "0123456789";
+
+            foreach (var c in ALPHA)
+            {
+                var newSb = new StringBuilder(cur.ToString());
+                newSb.Append(c);
+                _getSsns(curStrs, newSb);
+            }
+        }
+
+        private void _getSsns(List<string> curStrs, string cur)
+        {
+            if (cur.Length >= 11)
+            {
+                curStrs.Add(cur);
+                return;
+            }
+
+            if (cur.Length == 3 || cur.Length == 6)
+            {
+                // add a dash
+                cur += "-";
+            }
+
+            var ALPHA = "0123456789";
+
+            foreach (var c in ALPHA)
+            {
+                _getSsns(curStrs, cur + c);
+            }
         }
 
         public async Task<string> GetBearerToken(string aud)

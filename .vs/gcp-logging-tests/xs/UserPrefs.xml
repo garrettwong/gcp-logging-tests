@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{3ABA3537-EA7E-4A2E-8B77-081CDBCDC096}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
   <MonoDevelop.Ide.ItemProperties.gcp-logging-tests PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="gcp-logging-tests/Flows/StorageEventTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="gcp-logging-tests/Utilities/AddressGenerator.cs">
     <Files>
-      <File FileName="gcp-logging-tests/Access.cs" Line="13" Column="47" />
-      <File FileName="gcp-logging-tests/DefaultTests.cs" />
-      <File FileName="gcp-logging-tests/Flows/StorageEventTests.cs" Line="40" Column="14" />
-      <File FileName="gcp-logging-tests/API/LoggingAPI.cs" />
-      <File FileName="gcp-logging-tests/LogEventsTests.cs" />
+      <File FileName="gcp-logging-tests/API/LoggingAPI.cs" Line="1" Column="1" />
+      <File FileName="gcp-logging-tests/Tests/DefaultTests.cs" Line="34" Column="16" />
+      <File FileName="gcp-logging-tests/Utilities/SSNGenerator.cs" Line="1" Column="1" />
+      <File FileName="gcp-logging-tests/Utilities/RandomGenerator.cs" Line="18" Column="10" />
+      <File FileName="gcp-logging-tests/Utilities/EmptyClass.cs" Line="15" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,19 +17,26 @@
                 <Node name="PackageDependencies" expanded="True" />
               </Node>
               <Node name="API" expanded="True" />
-              <Node name="Flows" expanded="True">
-                <Node name="StorageEventTests.cs" selected="True" />
+              <Node name="Tests" expanded="True" />
+              <Node name="Utilities" expanded="True">
+                <Node name="AddressGenerator.cs" selected="True" />
               </Node>
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node name="gcp-logging-tests" expanded="True" selected="True">
+          <Node name="gcp-logging-tests" expanded="True">
             <Node name="gcp-logging-tests" expanded="True">
-              <Node name="gcp_logging_tests" expanded="True" />
-              <Node name="gcp_logging_tests.Flows" expanded="True" />
+              <Node name="gcp_logging_tests" expanded="True">
+                <Node name="DefaultTests" expanded="True">
+                  <Node name="GenerateSSNUsingSbTest" selected="True" />
+                </Node>
+              </Node>
             </Node>
           </Node>
         </State>
@@ -42,6 +49,7 @@
     <BreakpointStore>
       <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/LogEventsTests.cs" relfile="gcp-logging-tests/LogEventsTests.cs" line="146" column="1" />
       <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/API/LoggingAPI.cs" relfile="gcp-logging-tests/API/LoggingAPI.cs" line="130" column="1" />
+      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/Tests/DefaultTests.cs" relfile="gcp-logging-tests/Tests/DefaultTests.cs" line="30" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
