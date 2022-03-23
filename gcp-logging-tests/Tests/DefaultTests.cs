@@ -98,7 +98,7 @@ namespace gcp_logging_tests
             var token = await GetAccessToken();
 
             // generate at
-            var url = "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/csharp-on-gcp%40gwc-service-accounts.iam.gserviceaccount.com:generateAccessToken";
+            var url = "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/gen-iam-creds-sa%40gwc-sandbox.iam.gserviceaccount.com:generateAccessToken";
 
             // IAM Creds
             using var client = new HttpClient();
@@ -156,7 +156,7 @@ namespace gcp_logging_tests
             var token = await GetAccessToken();
 
             // generate at
-            var url = "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/csharp-on-gcp%40gwc-service-accounts.iam.gserviceaccount.com:generateAccessToken";
+            var url = "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/gen-iam-creds-sa%40gwc-sandbox.iam.gserviceaccount.com:generateAccessToken";
 
             // IAM Creds
             using var client = new HttpClient();

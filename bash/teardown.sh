@@ -46,7 +46,7 @@ function delete_sink() {
     gcloud projects remove-iam-policy-binding $PROJECT_ID \
         --member="$WRITER_IDENTITY" \
         --role=roles/bigquery.dataEditor
-    gcloud logging sinks delete --project $PROJECT_ID $SINK
+    gcloud logging sinks delete --project $PROJECT_ID $SINK --quiet
 }
 
 
@@ -66,3 +66,15 @@ delete_sink "admin_logs"
 delete_sink "data_access"
 delete_sink "vpc_flows"
 delete_sink "firewall"
+
+gcloud iam service-accounts delete gen-iam-creds-sa --project $PROJECT_ID
+gcloud iam service-accounts delete gcp-logging-tests --project $PROJECT_ID
+SA_EMAIL="gcp-logging-tests@${PROJECT_ID}.iam.gserviceaccount.com"
+SA_ROLES=("roles/compute.admin" "roles/storage.admin" "roles/resourcemanager.projectIamAdmin" "roles/iam.securityReviewer" "roles/viewer")
+
+for SA_ROLE in "${SA_ROLES[@]}"; do
+    gcloud projects remove-iam-policy-binding $PROJECT_ID \
+        --member="serviceAccount:${SA_EMAIL}" \
+        --role="${SA_ROLE}"
+done
+

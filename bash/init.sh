@@ -136,3 +136,23 @@ WRITER_IDENTITY=$(gcloud logging sinks describe firewall --format="value(writerI
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="$WRITER_IDENTITY" \
     --role=roles/bigquery.dataEditor
+
+
+# Generate SA and Key
+gcloud iam service-accounts create gen-iam-creds-sa --project $PROJECT_ID
+gcloud iam service-accounts create gcp-logging-tests --project $PROJECT_ID
+SA_EMAIL="gcp-logging-tests@${PROJECT_ID}.iam.gserviceaccount.com"
+SA_ROLES=("roles/compute.admin" "roles/storage.admin" "roles/resourcemanager.projectIamAdmin" "roles/iam.securityReviewer" "roles/viewer" "roles/logging.logWriter")
+
+for SA_ROLE in "${SA_ROLES[@]}"; do
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+        --member="serviceAccount:${SA_EMAIL}" \
+        --role=${SA_ROLE}
+done
+gcloud iam service-accounts keys create ~/Downloads/sa-key.json \
+    --iam-account "${SA_EMAIL}" --project $PROJECT_ID
+
+# grant access token creator
+gcloud iam service-accounts add-iam-policy-binding "gen-iam-creds-sa@${PROJECT_ID}.iam.gserviceaccount.com" \
+    --member="serviceAccount:${SA_EMAIL}" \
+    --role "roles/iam.serviceAccountTokenCreator"

@@ -1,5 +1,6 @@
 ﻿using gcp_logging_tests.API;
 using gcp_logging_tests.Utilities;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.IO;
@@ -56,11 +57,15 @@ namespace gcp_logging_tests.FirewallLogTests
         }
         private string GetExternalIP()
         {
-            var client = new RestClient("https://ifconfig.co");
+            var client = new RestClient("http://ifconfig.co/");
             var request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");
+
+            request.AddHeader("Accept", "application/json");
             IRestResponse response = client.Execute(request);
-            return response.Content;
+
+            return JsonConvert.DeserializeObject<dynamic>(response.Content).ip;
+            //return response.Content;
         }
 
         [Fact]
