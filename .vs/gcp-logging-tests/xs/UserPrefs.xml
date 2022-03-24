@@ -1,14 +1,13 @@
 ﻿<Properties StartupConfiguration="{3ABA3537-EA7E-4A2E-8B77-081CDBCDC096}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
-  <MonoDevelop.Ide.ItemProperties.gcp-logging-tests PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="gcp-logging-tests/FirewallLogTests/FirewallLog_Tests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="gcp-logging-tests/Tests/LogEventsTests.cs">
     <Files>
       <File FileName="gcp-logging-tests/API/LoggingAPI.cs" Line="20" Column="22" />
       <File FileName="gcp-logging-tests/Tests/DefaultTests.cs" Line="56" Column="11" />
-      <File FileName="gcp-logging-tests/Utilities/SSNGenerator.cs" />
-      <File FileName="gcp-logging-tests/Utilities/RandomGenerator.cs" />
-      <File FileName="gcp-logging-tests/Global.cs" />
-      <File FileName="gcp-logging-tests/Tests/LogEventsTests.cs" Line="31" Column="51" />
-      <File FileName="gcp-logging-tests/FirewallLogTests/FirewallLog_Tests.cs" Line="90" Column="24" />
+      <File FileName="gcp-logging-tests/Utilities/SSNGenerator.cs" Line="1" Column="1" />
+      <File FileName="gcp-logging-tests/Utilities/RandomGenerator.cs" Line="1" Column="1" />
+      <File FileName="gcp-logging-tests/Global.cs" Line="1" Column="1" />
+      <File FileName="gcp-logging-tests/Tests/LogEventsTests.cs" Line="36" Column="23" />
+      <File FileName="gcp-logging-tests/FirewallLogTests/FirewallLog_Tests.cs" Line="74" Column="38" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,10 +15,10 @@
           <Node name="gcp-logging-tests" expanded="True">
             <Node name="gcp-logging-tests" expanded="True">
               <Node name="API" expanded="True" />
-              <Node name="FirewallLogTests" expanded="True">
-                <Node name="FirewallLog_Tests.cs" selected="True" />
+              <Node name="FirewallLogTests" expanded="True" />
+              <Node name="Tests" expanded="True">
+                <Node name="LogEventsTests.cs" selected="True" />
               </Node>
-              <Node name="Tests" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -34,12 +33,9 @@
           <Node name="gcp-logging-tests" expanded="True">
             <Node name="gcp-logging-tests" expanded="True">
               <Node name="gcp_logging_tests" expanded="True">
-                <Node name="DefaultTests" expanded="True">
-                  <Node name="LogsList" selected="True" />
+                <Node name="LogEventsTests" expanded="True">
+                  <Node name="BucketsObjectReadLogEvent" selected="True" />
                 </Node>
-              </Node>
-              <Node name="gcp_logging_tests.DataAccessLogTests" expanded="True">
-                <Node name="DataRead_Tests" expanded="True" />
               </Node>
               <Node name="gcp_logging_tests.FirewallLogTests" expanded="True">
                 <Node name="FirewallLog_Tests" expanded="True" />
@@ -50,8 +46,8 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/LogEventsTests.cs" relfile="gcp-logging-tests/LogEventsTests.cs" line="146" column="1" />
@@ -60,7 +56,9 @@
       <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/Tests/DefaultTests.cs" relfile="gcp-logging-tests/Tests/DefaultTests.cs" line="122" column="1" />
       <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/Tests/DefaultTests.cs" relfile="gcp-logging-tests/Tests/DefaultTests.cs" line="178" column="1" />
       <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/Tests/DefaultTests.cs" relfile="gcp-logging-tests/Tests/DefaultTests.cs" line="63" column="1" />
+      <Breakpoint file="/Users/garrettwong/Git/gcp-logging-tests/gcp-logging-tests/FirewallLogTests/FirewallLog_Tests.cs" relfile="gcp-logging-tests/FirewallLogTests/FirewallLog_Tests.cs" line="75" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.gcp-logging-tests PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

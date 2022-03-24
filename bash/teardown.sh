@@ -41,7 +41,7 @@ function delete_instance() {
 function delete_sink() {
     SINK="$1"
 
-    bq rm $SINK
+    bq rm -f $SINK
     WRITER_IDENTITY=$(gcloud logging sinks describe $SINK --format="value(writerIdentity)")
     gcloud projects remove-iam-policy-binding $PROJECT_ID \
         --member="$WRITER_IDENTITY" \

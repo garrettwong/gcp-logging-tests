@@ -60,8 +60,8 @@ namespace gcp_logging_tests.FirewallLogTests
             var client = new RestClient("http://ifconfig.co/");
             var request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");
-
             request.AddHeader("Accept", "application/json");
+
             IRestResponse response = client.Execute(request);
 
             return JsonConvert.DeserializeObject<dynamic>(response.Content).ip;
