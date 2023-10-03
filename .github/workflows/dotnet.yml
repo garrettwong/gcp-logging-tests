@@ -19,7 +19,7 @@ jobs:
       run: echo "${{ secrets.gcp_credentials }}"
     
     - name: Create KEYFILE
-      run: echo "${{ secrets.gcp_credentials }}" | base64 -D >> sa-key.json
+      run: echo "${{ secrets.gcp_credentials }}" | base64 -d >> sa-key.json
     
     - name: SHOW
       run: ls
