@@ -1,8 +1,10 @@
-# GCP LOGGING TESTS
+# gcp-logging-tests
 
-GCP Logging Tests is a security focused solution.  It focuses specifically the end to end process of event generation and the resulting, generated GCP logs.  There are various types of [Google Cloud Audit Logs](https://cloud.google.com/logging/docs/audit).
+`gcp-logging-tests` focuses on the continuous verification of the end to end process of event generation and the generated GCP logs.  It's goal is to identify log diffs, new log generations in common cloud workflows.  
 
 ## Getting Started
+
+We recommend ensuring that you familiarize yourself with the different types of [Google Cloud Audit Logs](https://cloud.google.com/logging/docs/audit).
 
 ### Prerequisites
 
@@ -16,7 +18,7 @@ GCP Logging Tests is a security focused solution.  It focuses specifically the e
 
 ### Running init.sh
 
-Running `init.sh` will configure your environment for testing.  Running `teardown.sh` will teardown your environment.
+Running `bash/init.sh` will configure your environment for testing.  Running `bash/teardown.sh` will teardown your environment.
 
 ### Local
 
