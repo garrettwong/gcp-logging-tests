@@ -1,6 +1,6 @@
 # gcp-logging-tests
 
-`gcp-logging-tests` focuses on the continuous verification of the end to end process of event generation and the generated GCP logs.  It's goal is to identify log diffs, new log generations in common cloud workflows.  
+`gcp-logging-tests` focuses on the continuous verification of the end to end processes of generating events and their associated Google Cloud Platform logs.  We want to identify log diffs, new log generations in common cloud workflows.  
 
 ## Getting Started
 
