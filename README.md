@@ -6,19 +6,10 @@
 
 We recommend ensuring that you familiarize yourself with the different types of [Google Cloud Audit Logs](https://cloud.google.com/logging/docs/audit).
 
-### Configuring Github Secrets (Actions)
-
-For reference, configure the 2 Action secrets: `GCP_CREDENTIALS` and `GCP_PROJECT` at https://github.com/garrettwong/gcp-logging-tests/settings/secrets/actions
-
 ### Prerequisites
 
-* A Google Cloud Project with an associated Billing Account
-* The default role of roles/owner will work.  If you do not have owner, you will need the following roles: (`roles/compute.admin, roles/storage.admin, roles/resourcemanager.projectIamAdmin`) for:
-  * Create GCE VMs
-  * Create GCS Buckets
-  * Create Firewall Rules
-  * Update Subnet Configurations
-  * Set IAM Policy
+1. A Google Cloud Project with an associated Billing Account
+1. The default role of `roles/owner` will work.  If you do not have owner, you will need the following roles: (`roles/compute.admin`, `roles/storage.admin`, `roles/resourcemanager.projectIamAdmin`) - the service account will create GCE VMs, GCS buckets, FW rules, Subnets, and SetIAMPolicy
 
 ### Running init.sh
 
@@ -29,11 +20,14 @@ Running `bash/init.sh` will configure your environment for testing.  Running `ba
 1. Create a Service Account with the IAM Roles (`roles/compute.admin, roles/storage.admin, roles/resourcemanager.projectIamAdmin, roles/iam.securityReviewer, roles/viewer`)
 2. Download a Service Account Key JSON file from GCP (assume its called `sa-key.json`).
 3. Set an env var, `export GOOGLE_APPLICATION_CREDENTIALS=sa-key.json`
+4. To unset the env var after dev, use `unset GOOGLE_APPLICATION_CREDENTIALS`
 
-### Github Actions
+### Github Actions Setup
 
-1. Create a sa-key.json file that is used locally
-2. On Mac OSX, run `base64 sa-key.json`
+Refer to: https://github.com/garrettwong/gcp-logging-tests/settings/secrets/actions
+
+1. Create a Service Account JSON Key, `sa-key.json` that is used locally
+2. On Mac OSX, run `base64 -i sa-key.json`
 3. Copy the contents of that and create a GITHUB Secret in the Repository called `GCP_CREDENTIALS`
 4. Create another GITHUB Secret called `GCP_PROJECT_ID` with the value of the GCP Project ID
 5. Commit to Github using
