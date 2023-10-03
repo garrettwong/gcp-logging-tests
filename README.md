@@ -6,6 +6,10 @@
 
 We recommend ensuring that you familiarize yourself with the different types of [Google Cloud Audit Logs](https://cloud.google.com/logging/docs/audit).
 
+### Configuring Github Secrets (Actions)
+
+For reference, configure the 2 Action secrets: `GCP_CREDENTIALS` and `GCP_PROJECT` at https://github.com/garrettwong/gcp-logging-tests/settings/secrets/actions
+
 ### Prerequisites
 
 * A Google Cloud Project with an associated Billing Account
