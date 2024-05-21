@@ -13,7 +13,7 @@ namespace gcp_logging_tests.Utilities
         {
             var addresses = new List<string>();
 
-            // addresses are multiple parts 123 freeway drive, brea ca 92823
+            // 1000 Silicon Way, Atherton, CA 94027
 
             return addresses;
         }
