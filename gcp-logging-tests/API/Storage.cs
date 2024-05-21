@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GCS = global::Google.Cloud.Storage;
 
 namespace gcp_logging_tests.API
@@ -33,7 +29,7 @@ namespace gcp_logging_tests.API
                 bucketName = bucketName.Replace("gs://", "");
 
                 var options = new GCS.V1.GetObjectOptions();
-                
+
                 var res = _storageClient.GetObject(bucketName, objectName, options);
 
                 return res;
@@ -54,7 +50,6 @@ namespace gcp_logging_tests.API
                 bucketName = bucketName.Replace("gs://", "");
 
                 var contentType = "";
-                // var source = (new ChaosStream ());
                 var options = new GCS.V1.UploadObjectOptions();
 
                 using (var fs = File.Open(localFilePath, FileMode.Open))
@@ -66,7 +61,6 @@ namespace gcp_logging_tests.API
             catch (Google.GoogleApiException e)
           when (e.Error.Code == 409)
             {
-                // The bucket already exists.  That's fine.
                 Console.WriteLine(e.Error.Message);
             }
 

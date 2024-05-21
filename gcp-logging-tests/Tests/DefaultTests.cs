@@ -27,10 +27,8 @@ namespace gcp_logging_tests
         {
             var ssnGen = new SSNGenerator();
             var list = new List<string>();
-            
+
             ssnGen.GetSSNs(list, "");
-            Console.Write("HI");
-            //Assert.Equal(1000000000, list.Count);
             Assert.Equal(10000000, list.Count);
         }
 
@@ -60,7 +58,7 @@ namespace gcp_logging_tests
         {
             var adc = await GoogleCredential
                 .GetApplicationDefaultAsync();
-            var gc = adc.CreateScoped(new string[] { "https://www.googleapis.com/auth/cloud-platform" });
+            var gc = adc.CreateScoped(new string[] { Global.Scopes.CLOUD_PLATFORM });
 
             var token = await gc.UnderlyingCredential.GetAccessTokenForRequestAsync();
 
@@ -110,7 +108,7 @@ namespace gcp_logging_tests
 
             var scopes = new
             {
-                scope = new string[] { "https://www.googleapis.com/auth/cloud-platform" }
+                scope = new string[] { Global.Scopes.CLOUD_PLATFORM }
             };
             var json = JsonConvert.SerializeObject(scopes);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
@@ -168,7 +166,7 @@ namespace gcp_logging_tests
 
             var scopes = new
             {
-                scope = new string[] { "https://www.googleapis.com/auth/cloud-platform" }
+                scope = new string[] { Global.Scopes.CLOUD_PLATFORM }
             };
             var json = JsonConvert.SerializeObject(scopes);
             var data = new StringContent(json, Encoding.UTF8, "application/json");

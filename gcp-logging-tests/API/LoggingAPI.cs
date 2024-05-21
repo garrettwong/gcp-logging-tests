@@ -6,11 +6,8 @@ using Google.Cloud.Logging.V2;
 using Grpc.Core;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using GCS = global::Google.Cloud.Storage;
 
 namespace gcp_logging_tests.API
 {
@@ -56,8 +53,6 @@ namespace gcp_logging_tests.API
             };
             client.WriteLogEntries(logName, resource, entryLabels,
                 new[] { logEntry }, _retryAWhile);
-
-            // Console.WriteLine($"Created log entry in log-id: {logId}.");
         }
 
 
@@ -83,7 +78,7 @@ namespace gcp_logging_tests.API
             ProjectName projectName = new ProjectName(projectId);
             var results = client.ListLogEntries(Enumerable.Repeat(projectName, 1), $"logName={logName.ToString()} AND " +
                 $"timestamp >= \"{v}\"", //"timestamp >= \"2021-07-25T2:40:00-04:00\"",
-                "timestamp desc", callSettings: _retryAWhile);//_retryAWhile);
+                "timestamp desc", callSettings: _retryAWhile);
 
             return results;
         }
@@ -108,7 +103,7 @@ namespace gcp_logging_tests.API
             var client = LoggingServiceV2Client.Create();
             ProjectName projectName = new ProjectName(projectId);
             var results = client.ListLogEntries(Enumerable.Repeat(projectName, 1), logQuery,
-                "timestamp desc", callSettings: _retryAWhile);//_retryAWhile);
+                "timestamp desc", callSettings: _retryAWhile);
 
             return results;
         }
@@ -126,7 +121,6 @@ namespace gcp_logging_tests.API
             foreach (var row in results)
             {
                 sb.Append(row.TextPayload.Trim());
-                //Console.WriteLine($"{row.TextPayload.Trim()}");
             }
             var res = sb.ToString();
         }

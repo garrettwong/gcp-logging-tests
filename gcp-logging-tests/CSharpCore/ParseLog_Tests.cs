@@ -1,14 +1,8 @@
-﻿using gcp_logging_tests.API;
-using gcp_logging_tests.Utilities;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using RestSharp;
 using System;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Sockets;
 using Xunit;
 
 namespace gcp_logging_tests.CSharpCore
@@ -38,18 +32,6 @@ namespace gcp_logging_tests.CSharpCore
 
                 return propertyValue;
             }
-
-            // public static dynamic Get(string text, string propertyName)
-            // {
-            //     JsonElement json = JsonSerializer.Deserialize<JsonElement>(text);
-            //     dynamic propertyValue;
-            //     if (json.TryGetProperty(propertyName, out JsonElement messageElement) &&
-            //         messageElement.ValueKind == JsonValueKind.String)
-            //     {
-            //         propertyValue = messageElement();
-            //     }
-            //     return propertyValue;
-            // }
         }
 
         [Fact]
@@ -105,8 +87,8 @@ namespace gcp_logging_tests.CSharpCore
             foreach (JToken param in paramsArray)
             {
                 var bundleDependencies = param.Values<string>();
-                
-                var list = new string[] { "abbrev", "ansicolors", "ansistyles", 
+
+                var list = new string[] { "abbrev", "ansicolors", "ansistyles",
                 "aproba",
         "archy",
         "bin-links",

@@ -50,7 +50,7 @@ namespace gcp_logging_tests.DataAccessLogTests
 
                 Assert.Equal("storage.objects.create", cal.MethodName);
                 Assert.Equal("storage.googleapis.com", cal.ServiceName);
-                Assert.Equal("gcp-csharp-app@gwc-core.iam.gserviceaccount.com", cal.AuthenticationInfo.PrincipalEmail);
+                Assert.Equal(Global.Application.SERVICE_ACCOUNT, cal.AuthenticationInfo.PrincipalEmail);
                 Assert.NotNull(cal.RequestMetadata.CallerIp);
                 Assert.Equal($"projects/_/buckets/{projectId}/objects/superobject", cal.ResourceName);
                 Assert.NotNull(cal.RequestMetadata.RequestAttributes.Time.ToString().Replace("\"", ""));
@@ -132,7 +132,7 @@ namespace gcp_logging_tests.DataAccessLogTests
             }
 
             Console.WriteLine(logEntriesBeforeCount.ToString() + " " + logEntriesAfterCount.ToString());
-            
+
             Assert.True(logEntriesBeforeCount < logEntriesAfterCount);
         }
     }

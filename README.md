@@ -11,9 +11,11 @@ We recommend ensuring that you familiarize yourself with the different types of 
 1. A Google Cloud Project with an associated Billing Account
 1. The default role of `roles/owner` will work.  If you do not have owner, you will need the following roles: (`roles/compute.admin`, `roles/storage.admin`, `roles/resourcemanager.projectIamAdmin`) - the service account will create GCE VMs, GCS buckets, FW rules, Subnets, and SetIAMPolicy
 
-### Running init.sh
+### Prerequisites
 
-Running `bash/init.sh` will configure your environment for testing.  Running `bash/teardown.sh` will teardown your environment.
+Run `bash/init.sh` to configure your environment for testing.  
+
+Run `bash/teardown.sh` to teardown your environment for testing.
 
 ### Local
 
@@ -44,6 +46,7 @@ git push -u   "https://$GITUSER":"$GITTOKEN@github.com/$GITUSER/gcp-logging-test
 
 ## Running this Solution
 
+These commands can be run from the root directory /gcp-logging-tests
 ```bash
 dotnet build
 dotnet test

@@ -1,6 +1,5 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
-using System.Threading.Tasks;
 using Compute = Google.Apis.Compute;
 
 namespace gcp_logging_tests.API
@@ -20,13 +19,13 @@ namespace gcp_logging_tests.API
             credential = GoogleCredential.GetApplicationDefault();
             if (credential.IsCreateScopedRequired)
             {
-                credential = credential.CreateScoped("https://www.googleapis.com/auth/cloud-platform");
+                credential = credential.CreateScoped(Global.Scopes.CLOUD_PLATFORM);
             }
 
             _computeService = new Compute::v1.ComputeService(new BaseClientService.Initializer
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "Google-ComputeSample/0.1",
+                ApplicationName = Global.Application.APP_NAME,
             });
         }
 

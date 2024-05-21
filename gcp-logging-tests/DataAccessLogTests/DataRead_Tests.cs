@@ -65,7 +65,7 @@ namespace gcp_logging_tests.DataAccessLogTests
                 ).Count();
 
                 if (logEntriesBeforeCount < logEntriesAfterCount) break;
-                
+
                 remainingAttempts--;
             }
 

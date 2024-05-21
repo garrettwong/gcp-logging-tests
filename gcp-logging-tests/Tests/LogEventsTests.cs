@@ -13,7 +13,7 @@ namespace gcp_logging_tests
     /// Log Entries List Example
     /// https://github.com/GoogleCloudPlatform/dotnet-docs-samples/tree/master/logging/api
     /// /Users/garrettwong/Git/dotnet-docs-samples/logging/api/LoggingSample
-    /// dotnet 5.0.x
+    /// dotnet 8.0.x
     public class LogEventsTests
     {
         private readonly string _projectId;
@@ -28,7 +28,7 @@ namespace gcp_logging_tests
         [Fact]
         public void WriteLogTest()
         {
-            LoggingAPI.WriteLogEntry(Global.PROJECT_ID, "hello", "world");
+            LoggingAPI.WriteLogEntry(Global.PROJECT_ID, "cheese", "Tête de Moine");
         }
 
         /// <summary>
@@ -39,12 +39,12 @@ namespace gcp_logging_tests
         public void ListLogEntriesTest()
         {
             // Write twice just in case
-            LoggingAPI.WriteLogEntry(Global.PROJECT_ID, "hello", "world");
+            LoggingAPI.WriteLogEntry(Global.PROJECT_ID, "cheese", "appenzeller");
             Thread.Sleep(5000);
-            LoggingAPI.WriteLogEntry(Global.PROJECT_ID, "hello", "world2");
+            LoggingAPI.WriteLogEntry(Global.PROJECT_ID, "cheese", "gruyere");
             Thread.Sleep(5000);
 
-            var logEntries = LoggingAPI.ListLogEntries(Global.PROJECT_ID, "hello");
+            var logEntries = LoggingAPI.ListLogEntries(Global.PROJECT_ID, "cheese");
 
             Assert.NotEmpty(logEntries);
         }
@@ -74,7 +74,7 @@ namespace gcp_logging_tests
             var logEntries = LoggingAPI.ListLogEntriesByLogQuery(_projectId,
                 $"logName=\"projects/{_projectId}/logs/cloudaudit.googleapis.com%2Fdata_access\" AND " +
                 $"protoPayload.serviceName=\"storage.googleapis.com\" AND timestamp >= \"{v}\"");
-            
+
             foreach (var row in logEntries)
             {
                 var log = JsonConvert.SerializeObject(row);
@@ -84,7 +84,6 @@ namespace gcp_logging_tests
                 var jo = JObject.Parse(log);
 
                 JToken acme = jo.SelectToken("$.protoPayload.authenticationInfo.principalEmail");
-                //var s = acme.ToString();
 
                 Assert.Equal("gcs_bucket", jo.SelectToken("$.Resource.Type").ToString());
 

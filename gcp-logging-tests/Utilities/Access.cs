@@ -11,7 +11,7 @@ namespace gcp_logging_tests
         {
             var adc = await GoogleCredential
                 .GetApplicationDefaultAsync();
-            var gc = adc.CreateScoped(new string[] { "https://www.googleapis.com/auth/cloud-platform" });
+            var gc = adc.CreateScoped(new string[] { Global.Scopes.CLOUD_PLATFORM });
 
             var token = await gc.UnderlyingCredential.GetAccessTokenForRequestAsync();
 
@@ -22,15 +22,14 @@ namespace gcp_logging_tests
         {
             if (Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS") == null)
             {
-                if (File.Exists("/Users/garrettwong/Downloads/sa-key.json"))
+                if (File.Exists(Global.Application.PATH_TO_SA_KEY))
                 {
-                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", "/Users/garrettwong/Downloads/sa-key.json");
+                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", Global.Application.PATH_TO_SA_KEY);
                 }
                 else
                 {
-                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @"C:\Users\garre\Downloads\sa-key.json");
+                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", Global.Application.PATH_TO_SA_KEY_WINDOWS);
                 }
-                
             }
         }
     }

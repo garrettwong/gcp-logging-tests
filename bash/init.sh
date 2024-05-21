@@ -105,7 +105,8 @@ gcloud logging sinks create admin_logs \
 WRITER_IDENTITY=$(gcloud logging sinks describe admin_logs --format="value(writerIdentity)")
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="$WRITER_IDENTITY" \
-    --role=roles/bigquery.dataEditor
+    --role=roles/bigquery.dataEditor \
+    --condition None
 
 # Create SINK: BIGQUERY for Data Access LOGS
 bq mk data_access
@@ -115,7 +116,8 @@ gcloud logging sinks create data_access \
 WRITER_IDENTITY=$(gcloud logging sinks describe data_access --format="value(writerIdentity)")
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="$WRITER_IDENTITY" \
-    --role=roles/bigquery.dataEditor
+    --role=roles/bigquery.dataEditor \
+    --condition None
 
 # Create SINK to BIGQUERY for VPC Flows
 bq mk vpc_flows
@@ -125,7 +127,8 @@ gcloud logging sinks create vpc_flows \
 WRITER_IDENTITY=$(gcloud logging sinks describe vpc_flows --format="value(writerIdentity)")
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="$WRITER_IDENTITY" \
-    --role=roles/bigquery.dataEditor
+    --role=roles/bigquery.dataEditor \
+    --condition None
 
 # SINK: BIGQUERY for Firewall Logs
 bq mk firewall
@@ -135,7 +138,8 @@ gcloud logging sinks create firewall \
 WRITER_IDENTITY=$(gcloud logging sinks describe firewall --format="value(writerIdentity)")
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="$WRITER_IDENTITY" \
-    --role=roles/bigquery.dataEditor
+    --role=roles/bigquery.dataEditor \
+    --condition None
 
 
 # Generate SA and Key
@@ -147,7 +151,8 @@ SA_ROLES=("roles/compute.admin" "roles/storage.admin" "roles/resourcemanager.pro
 for SA_ROLE in "${SA_ROLES[@]}"; do
     gcloud projects add-iam-policy-binding $PROJECT_ID \
         --member="serviceAccount:${SA_EMAIL}" \
-        --role=${SA_ROLE}
+        --role=${SA_ROLE} \
+    --condition None
 done
 gcloud iam service-accounts keys create ~/Downloads/sa-key.json \
     --iam-account "${SA_EMAIL}" --project $PROJECT_ID
