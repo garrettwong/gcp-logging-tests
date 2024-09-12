@@ -37,8 +37,6 @@ namespace gcp_logging_tests.CSharpCore
         [Fact]
         public void ParseLog()
         {
-            string x = "null";
-
             var contentDir = $"{Directory.GetCurrentDirectory()}/Content";
             var fvizJsonPath = $"{contentDir}/fviz-package.json";
             var text = File.ReadAllText(fvizJsonPath);

@@ -36,9 +36,10 @@ namespace gcp_logging_tests.FirewallLogTests
             {
                 _knownVmIp = res.NetworkInterfaces[0].AccessConfigs[0].NatIP;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _knownVmIp = DEFAULT_IP;
+
             }
         }
 
