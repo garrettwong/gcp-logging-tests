@@ -13,6 +13,7 @@
             public const string SERVICE_ACCOUNT = "gcp-csharp-app@gwc-core.iam.gserviceaccount.com";
 
             public const string PATH_TO_SA_KEY = "/Users/garrettwong/Downloads/sa-key.json";
+            public const string PATH_TO_SA_KEY_LINUX = "/home/garrettwong/.secrets/sa-key.json";
             public const string PATH_TO_SA_KEY_WINDOWS = @"C:\Users\garre\Downloads\sa-key.json";
         }
 

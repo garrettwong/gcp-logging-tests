@@ -4,6 +4,7 @@ PROJECT_ID="${1:-$(gcloud config get-value project)}"
 PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
 MY_SOURCE_RANGE="107.139.105.0/24" # Update this to your source range
 REGIONS=("us-central1" "us-west1") # Subnetwork Regions to enable logging on
+USER="" # email
 
 function update_subnet_config() {
     SUBNET="$1"
@@ -67,7 +68,7 @@ function create_gke() {
 # for (1) Allow all http and (2) Deny all others
 gcloud compute \
     --project=${PROJECT_ID} \
-    firewall-rules create allow-all-http \
+    firewall-rules create gcp-logging-tests-allow-all-http \
     --description="Allows HTTP for all instances in VPC" \
     --direction=INGRESS \
     --priority=1000 \
@@ -79,7 +80,7 @@ gcloud compute \
 
 gcloud compute \
     --project=${PROJECT_ID} \
-    firewall-rules create deny-all \
+    firewall-rules create gcp-logging-tests-deny-all \
     --description="Allows HTTP for all instances in VPC" \
     --direction=INGRESS \
     --priority=10000 \
@@ -154,6 +155,7 @@ for SA_ROLE in "${SA_ROLES[@]}"; do
         --role=${SA_ROLE} \
     --condition None
 done
+
 gcloud iam service-accounts keys create ~/Downloads/sa-key.json \
     --iam-account "${SA_EMAIL}" --project $PROJECT_ID
 
@@ -161,3 +163,6 @@ gcloud iam service-accounts keys create ~/Downloads/sa-key.json \
 gcloud iam service-accounts add-iam-policy-binding "gen-iam-creds-sa@${PROJECT_ID}.iam.gserviceaccount.com" \
     --member="serviceAccount:${SA_EMAIL}" \
     --role "roles/iam.serviceAccountTokenCreator"
+
+gcloud storage buckets add-iam-policy-binding gs://$PROJECT_ID \
+  --member="user:$USER" --role="roles/storage.objectUser"

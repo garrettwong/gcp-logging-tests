@@ -26,7 +26,11 @@ namespace gcp_logging_tests
                 {
                     Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", Global.Application.PATH_TO_SA_KEY);
                 }
-                else
+                else if (File.Exists(Global.Application.PATH_TO_SA_KEY_LINUX))
+                {
+                    Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", Global.Application.PATH_TO_SA_KEY_LINUX);
+                }
+                else if (File.Exists(Global.Application.PATH_TO_SA_KEY_WINDOWS))
                 {
                     Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", Global.Application.PATH_TO_SA_KEY_WINDOWS);
                 }

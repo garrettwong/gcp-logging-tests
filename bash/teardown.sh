@@ -45,7 +45,7 @@ function delete_sink() {
     WRITER_IDENTITY=$(gcloud logging sinks describe $SINK --format="value(writerIdentity)")
     gcloud projects remove-iam-policy-binding $PROJECT_ID \
         --member="$WRITER_IDENTITY" \
-        --role=roles/bigquery.dataEditor
+        --role=roles/bigquery.dataEditor --quiet
     gcloud logging sinks delete --project $PROJECT_ID $SINK --quiet
 }
 

@@ -39,7 +39,6 @@ namespace gcp_logging_tests
             var list = new List<string>();
             var sb = new StringBuilder();
             ssnGen.GetSSNs(list, sb);
-            Console.Write("HI");
             //Assert.Equal(1000000000, list.Count);
             Assert.Equal(10000000, list.Count);
         }
